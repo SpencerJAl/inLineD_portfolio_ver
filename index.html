@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="Peter Rodgers, P.J.Rodgers@kent.ac.uk">
+
+<title>Linear Diagram Generator</title>
+
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="FileSaver.js"></script>
+
+
+<script type="text/javascript">
+
+  var downloadName = "linear.svg";
+  
+  var abstractDescription;
+  var width;
+  var height;
+  var guides = "lines";
+  var strategy = "greedy";
+  var order = "alpha";
+  var line = "narrow";
+  var orientation = "horizontal";
+  var colour = "line";
+  var textLengthsText = "";
+  
+  function init() {
+  
+    
+    // simple check for IE 8 or less
+    try {
+      var a = [1];
+      var b = a.indexOf[0];
+    } catch(err) {
+      document.write("Your web browser is not compatible with this web page. Please update your web browser to a later version or try a different one.");
+      return;
+    }
+    
+    var date = new Date();
+
+//    downloadName = "linear-"+date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"T"+date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds()+"-"+date.getMilliseconds()+".svg";
+    downloadName = "linear-"+date.getMinutes()+date.getSeconds()+date.getMilliseconds()+".svg";
+    var abstractDescriptionField = gup('abstractDescription');
+    width = gup('width');
+    height = gup('height');
+    //guides = gup('guides');
+    if (abstractDescriptionField == '') { // default
+//      abstractDescriptionField = "A%0D%0AC%0D%0AA+B%0D%0AB+C%0D%0A";
+//      abstractDescriptionField = "mammal%0D%0Adog+mammal+pet%0D%0Apet+mammal%0D%0Amammal+dog%0D%0Apet%0D%0A";
+      abstractDescriptionField = "pet%0D%0Amammal%0D%0Apet+mammal%0D%0Amammal+dog%0D%0Adog+mammal+pet"
+    }
+    
+
+    setupGlobal(abstractDescriptionField);
+
+    if(isNumber(width)) {
+      xSpacing = width/(globalZones.length+2);
+      document.getElementById('width').value = width;
+    } else {
+      width = xSpacing*(globalZones.length+2)
+    }
+
+    var lengths = findTextLengths();
+    
+    for(var i=0; i < lengths.length; i++) {
+      textLengthsText += parseInt(lengths[i])
+      if(i<lengths.length-1) {
+      textLengthsText += "-";
+      }
+    }
+    textLengthsText = textLengthsText.trim();
+    
+    outputLog("index.html",abstractDescriptionField,width,height,guides)
+    
+    if(isNumber(height)) {
+      ySpacing = height/(globalContours.length+1);
+      document.getElementById('height').value = height;
+    } else {
+      height = ySpacing*(globalContours.length+1)
+    }
+    
+    // if(guides == "none") {
+    //   document.getElementById('guidesNone').checked = true;
+    //   document.getElementById('guidesBackground').checked = false;      
+    //   document.getElementById('guidesLines').checked = false;     
+    // } else if(guides == "background") {
+    //   document.getElementById('guidesNone').checked = false;
+    //   document.getElementById('guidesBackground').checked = true;     
+    //   document.getElementById('guidesLines').checked = false;     
+    // } else {
+    //   guides = "lines";
+    //   document.getElementById('guidesNone').checked = false;
+    //   document.getElementById('guidesBackground').checked = false;      
+    //   document.getElementById('guidesLines').checked = true;      
+    // }   
+    document.getElementById('abstractDescription').innerHTML = globalAbstractDescription;
+    
+    var embedCodeNo = generateLineariFrame(abstractDescriptionField,"no");
+    var embedCodeYes = generateLineariFrame(abstractDescriptionField,"yes");
+    document.getElementById('embeddedLinear').innerHTML = embedCodeNo;
+    document.getElementById('embedCode').innerHTML = "<code>"+escapeHTML(embedCodeYes)+"</code>";
+
+    document.getElementById('downloadName').innerHTML = getDownloadName();
+        
+  }
+
+  function findTextLengths() {
+
+    var lengths = new Array();
+    for(var i=0; i < globalContours.length; i++) {
+      var contour = globalContours[i];
+
+      var svgText = '<svg width = "200" height = "200">'+generateTextSVG(100,100,0,findColor(0),"horizontal",contour);+'</svg>'
+      document.getElementById('textLengthMeasure').innerHTML = svgText;
+      var bbox1 = document.getElementById(contour).getBBox();
+      var textWidth = Math.ceil(bbox1.width);
+      lengths[i] = textWidth;
+    }
+    document.getElementById('textLengthMeasure').innerHTML = ""; // clear the div
+    return lengths;
+  }
+
+  
+  
+  function generateLineariFrame(abstractDescriptionField,includeUrl) {
+  
+    var frameHeight = parseInt(height);
+    var frameWidth = parseInt(width)+findExtraSpace(textLengthsText);
+    frameHeight += 50;
+    if(includeUrl == "yes") {
+      frameHeight += 40;
+    }
+    var webpageURL = window.location.toString().substring(0,window.location.toString().lastIndexOf("/"));
+    var ret = '<iframe src="'+webpageURL+'/linear.html?width='+width+'&height='+height+'&textLengths='+textLengthsText+'&extraSpace=0'+'&guides='+guides+'&addUrl='+includeUrl+'&addCount=no'+'&strategy='+strategy+'&abstractDescription='+abstractDescriptionField+'" width="'+frameWidth+'" height="'+frameHeight+'" scrolling="no"></iframe>';
+    return ret;
+  }
+  
+  function saveSVG() {
+    var svgString = generateLinearSVG(width,height,textLengthsText,guides,order,line,orientation,strategy,colour,"download");
+    var blob = new Blob([svgString], {
+      type: "text/plain;charset=utf-8;",
+    });
+    saveAs(blob, getDownloadName());
+  }
+
+  function getDownloadName() {
+    return downloadName;
+  }
+  
+  
+</script>
+
+
+</head>
+
+<body onload="init();">
+
+<noscript><h3>Your browser has JavaScript disabled.</h3><h3>You must enable Javascript to be able to see this page properly.</h3><br/><br/><br/><br/><br/><br/></noscript>
+
+<h2>Linear Diagram Generator</h2>
+
+<div id="embeddedLinear"  style="margin-left:20px;"></div>
+<div>
+  <br/>
+  <a href="editSVG.html">EDIT SVG IMAGE</a>
+</div>
+
+<div>
+<form action="index.html" method="get" target="_self">
+<table cellspacing="20">
+  <tr>
+    <td style="vertical-align:middle">
+      <textarea name="abstractDescription" id="abstractDescription" cols="40" rows="8">
+      </textarea>
+    </td>
+    <td style="vertical-align:middle">
+      <table>
+        <tr>
+          <td>
+            Diagram Width: <br/>
+            Diagram Height: <br/>
+            <!-- Show Guides:  -->
+          </td>
+          <td>
+            <input type="text" id="width" name="width" size="5" value=""> (leave blank for default)<br/>
+            <input type="text" id="height" name="height" size="5" value=""> (leave blank for default)<br/>
+            <!-- <input type="radio" id="guidesNone" name="guides" value="none">None
+            <input type="radio" id="guidesBackground" name="guides" value="background">Background -->
+            <input type="hidden" id="guidesLines" name="guides" value="lines">
+        </tr>
+      </table>
+      <input type="submit" value="Redraw Diagram">
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+
+<p>To use this tool, enter the sets that intersect on each line, separated by spaces. The diagram will not change until the "Redraw Diagram" button is pressed.</p>
+
+<p>This is a diagram that shows the intersections of a number of sets. It can be used as an alternative to a Venn or Euler diagram. There is evidence that linear diagrams are more easily interpreted than the other kinds of diagram<sup>1,2</sup>.<br/><a href="guide.html">Some help on how to interpret linear diagrams</a>.</p>
+
+A paper detailing the process of designing this tool is given here: <br>
+<ul><li><b>Visualizing Sets with Linear Diagrams. Peter Rodgers, Gem Stapleton and Peter Chapman. ACM Transactions on Computer Human Interaction 22(6) pp. 27:1-27:39 September 2015. doi:10.1145/2810012</b>. <a href="https://kar.kent.ac.uk/50020">Online copy</a>.</li></ul> 
+If you use the tool in your research, we encourage you to reference this publication.
+
+<hr>
+
+
+<h3>Ways of accessing the results</h3>
+
+You can screen shot the image, download svg, or embed live code in your web page.
+
+<p>
+Click on the button below to download the image as <b id='downloadName'></b>. This can be edited using an svg editor such as <a href="http://www.inkscape.org/">Inkscape</a>. Inkscape will also allow the diagram to be saved as gif, png, eps and other formats. This download facility only works with modern browers. If it fails for you, try upgrading your browser.
+</p>
+<input id="svgDownload" type="button" name="Download SVG" value="Download SVG" onClick="saveSVG();">
+<br>
+<br>
+<p>
+To embed this diagram in your own web page, copy and paste the following code into your html:
+<br>
+<div id="embedCode"></div>
+
+
+<div id="textLengthMeasure"></div>
+
+<hr>
+
+<h3>Length Proportional Diagrams</h3>
+
+
+<p>It is possible to use this tool to generate length proportional diagrams, where the widths of the intersections are proportional to input values. To use this facility, add a space followed by the required value to every intersection. <a href="index.html?abstractDescription=A+6.55%0D%0AB+3%0D%0AC+1.2%0D%0AD+7%0D%0AA+B+6.101%0D%0AB+C+5.5%0D%0AA+B+C+D+4%0D%0A&width=&height=&background=yes">An example of a length proportional diagram</a>.</p>
+
+<hr>
+
+<h3>People</h3>
+
+<p>
+Developed by: <a href="http://www.cs.kent.ac.uk/people/staff/pjr/"> Peter Rodgers</a> email: <a href="mailto:P.J.Rodgers@kent.ac.uk">P.J.Rodgers@kent.ac.uk</a>, <a href= "http://about.brighton.ac.uk/cem/contact/details.php?uid=ges9">Gem Stapleton</a> and <a href="http://about.brighton.ac.uk/cem/contact/details.php?uid=pc116">Peter Chapman</a>
+</p>
+
+<br>
+<hr>
+
+
+<br>
+
+<small>
+1. <a href="https://kar.kent.ac.uk/38993">Visualizing Sets: An Empirical Comparison of Diagram Types.</a> Peter Chapman, Gem Stapleton, Peter Rodgers, Luana Micallef, and Andrew Blake. In Diagrams, LNCS (LNAI) 8578, pages 146-160. Springer, July 2014
+<br>
+2. <a href="http://www.josis.org/index.php/josis/article/viewArticle/187">A Comparative Study on Linear and Region Based Diagrams.</a> B. Gottfried. Journal of Spatial Information Science, 10:3-20, 2015.
+<br>
+<br>
+<br>
+
+    The Linear Diagram Generator is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+<br>
+<br>
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public
+  License v3 or later as published by the Free Software Foundation</a>. A local copy of <a href ="COPYING">the licence</a>.
+
+</small>
+
+
+<!-- Google Analytics code --> 
+
+<script type="text/javascript">
+var accountNo = 'UA-2248758-2';
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker(accountNo);
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!-- Google Analytics code end --> 
+
+</body>
+
+</html>
+

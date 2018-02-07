@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SVG EDITOR</title>
+
+	<link rel="stylesheet" href="index.css">
+
+	<script type="text/javascript" src="utils.js"></script>
+	<script type="text/javascript" src="FileSaver.js"></script>	
+	<script type="text/javascript" src="svgTools.js"></script>
+
+	<script type="text/javascript">
+		var svgCode = localStorage.getItem("svg");
+		var downloadName = "linear.svg";
+		var row1;
+		var row2;
+		var col1;
+		var col2;
+		var num1;
+		var num2;
+		var guides;
+		
+		function init(){
+			//gets Guides from local storage
+			guides = localStorage.getItem("guides");
+			//Updates Guides to reflect appropriate on page and diagram.
+			if(guides == 'lines'){
+				document.getElementById('guidesNone').checked = false;
+		  		document.getElementById('guidesBackground').checked = false;      
+		  		document.getElementById('guidesLines').checked = true; 
+				svgCode = localStorage.getItem("svg");//Gets Svg string from local storage.
+				document.getElementById('showSVG').innerHTML = svgCode;	//draws image
+			} else if(guides == 'background'){
+				document.getElementById('guidesNone').checked = false;
+		  		document.getElementById('guidesBackground').checked = true;      
+		  		document.getElementById('guidesLines').checked = false;
+				svgCode = guidesBackground();//removes guides for image.
+				document.getElementById('showSVG').innerHTML = svgCode;	//draws image
+			} else if(guides == 'none'){
+				document.getElementById('guidesNone').checked = true;
+		  		document.getElementById('guidesBackground').checked = false;      
+		  		document.getElementById('guidesLines').checked = false;
+				svgCode = guidesNone();//removes guides for image.
+				document.getElementById('showSVG').innerHTML = svgCode;	//draws image
+			} 
+			
+			//Date used for saving file.
+			var date = new Date();	
+			downloadName = "linear-"+date.getMinutes()+date.getSeconds()+date.getMilliseconds()+".svg";
+			//Labels used to populate list box and select prio for sorting.
+			var labels = labelListBox();
+			document.getElementById('labelListBox').innerHTML = labels;
+			var prioLabels = localStorage.getItem("prioLabels");//retrieves priority labels from local storage
+			var prioNum = localStorage.getItem("prioNum");//retrieves priority line numbers from local storage.
+			//displays any selected prioity labels.
+			document.getElementById('prioList').innerHTML = prioList();		
+		}
+		//Function used to pass values to swap rows function (from form)
+		function rows(){
+			swapRows(document.getElementById('row1').value, document.getElementById('row2').value);//see SVGTools.js
+		}
+		//Function used to pass values to swap cols function (from form)
+		function cols(){
+			swapCols(document.getElementById('col1').value, document.getElementById('col2').value);//see SVGTools.js
+		}
+		//Function for reording diagram with minimum line spaces
+		function reorder(){
+			orderGaps();//see SVGTools.js
+		}
+		//Function to change guides to boxes
+		function background(){
+			guidesBackground();
+		}
+		//Function to remove guides
+		function none(){
+			guidesNone();
+		}
+		//Function to change guides selected on page
+		function changeGuides(){
+			//Function will check to see which radio box is checked and update the variable accordingly
+			if(document.getElementById('guidesLines').checked == true){
+				guides = 'lines';
+				localStorage.setItem("guides", guides);
+			} else if(document.getElementById('guidesNone').checked == true){
+				guides = 'none';
+				localStorage.setItem("guides", guides);
+			} else if(document.getElementById('guidesBackground').checked == true){
+				guides = 'background';
+				localStorage.setItem("guides", guides);
+			}
+		}
+		//Function used to reorder diagram based on priority lines.
+		function orderForce(){
+			var svgCode = localStorage.getItem("svg");
+			var temp = localStorage.getItem("prioNum");
+			//Local storage will only save elements as strings, therefor any arrays put in will revert back to strings,
+			//the below loop puts the values back into array form.
+			var prioNum = new Array();
+			for (var i = 0; i < temp.length; i++) {
+				prioNum.push(temp[i]);	
+			}			
+			//passed the svg string and the array of priority line numbers to the sortForce function (see SVGTools.js)
+			sortForce(prioNum);
+		}
+		//Function used to save svg image as file
+		function saveSVG() {
+		    var svgString = svgCode;
+		    var blob = new Blob([svgString], {
+		      type: "text/plain;charset=utf-8;",
+		    });
+		    saveAs(blob, getDownloadName());
+		}
+		//gets download name, used by saveSVG
+		function getDownloadName() {
+		   return downloadName;
+		}
+		//Function used to dynamically create and populate listbox containing all available labels.
+		function labelListBox(){
+			var svgString = localStorage.getItem("svg");
+			var sections = separateSVG(svgString);
+			var lines = sections[1];
+			var swapNo = getLineNo(lines);
+			var labels = getLabels(lines, swapNo);
+			var size = labels.length;
+			var ret;
+			//creates form with button containing all options available.
+			ret = '<form action="editSVG.html">\n';
+			ret += '<select id="labelsList" size="'+size+'">\n';
+			for (var i = 0; i < labels.length; i++) {
+				ret += '<option>'+labels[i]+'</option>\n';
+			}
+			ret += '</select>\n';
+			ret += '<input type="submit" value=">>" onClick = "addToPrio()">\n';
+			ret += '</form>\n';	
+			//returns string for use in HTML page.
+			return ret;	
+		}
+		//Function used to add selected labels from standard list to the priority listbox.
+		function addToPrio(){
+			var svgString = localStorage.getItem("svg");
+			var sections = separateSVG(svgString);
+			var lines = sections[1];
+			var swapNo = getLineNo(lines);
+			var labels = getLabels(lines, swapNo);
+			var size = labels.length;
+			var current;
+			var prioLabels = localStorage.getItem("prioLabels");
+			var prioNum = localStorage.getItem("prioNum");
+			var temp = localStorage.getItem("prioLabels");
+			temp = temp.split(",");
+			var tempNum = new Array();
+			var tempLab = new Array();
+			//retrieves all labels, checks to see if it is selected:
+			var labelsList = document.getElementById('labelsList');
+			for (var i = 0; i < labelsList.length; i++) {
+				current = labelsList[i];
+				//if selected, adds to priority List providing it isn't already present.
+				if(current.selected == true && temp.includes(labels[i]) != true ){	
+					tempNum.push(i);
+					tempLab.push(labels[i]);
+					tempLab.push("");
+				} 
+			}
+			//adds new prio to the existing list
+			prioLabels = prioLabels.concat(tempLab);
+			prioNum = prioNum.concat(tempNum);
+			//loads updated prio list into local storage.
+			localStorage.setItem("prioLabels", prioLabels);
+			localStorage.setItem("prioNum", prioNum);
+		}
+		//Function used to create and populate priority label listbox.
+		function prioList(){
+			var svgString = localStorage.getItem("svg");
+			var sections = separateSVG(svgString);
+			var lines = sections[1];
+			var swapNo = getLineNo(lines);
+			var labels = getLabels(lines, swapNo);
+			var size = labels.length;
+			var temp = localStorage.getItem("prioLabels");
+			//String from local storage required to be turned back into array.
+			prioLabels = temp.split(",");
+			var ret;
+			//creates listbox with options when array is NOT empty
+			if(prioLabels!='null'){
+				ret = '<form action="editSVG.html">\n';
+				ret += '<select multiple="multiple" id="prioList" size="'+size+'">\n';
+				for (var i = 0; i < prioLabels.length; i++) {
+					ret += '<option>'+prioLabels[i]+'</option>\n';
+				}
+				ret += '</select>\n';
+				ret += '<input type="submit" value="Order on Prio" onClick = "orderForce()">\n';
+				ret += '</form>\n';
+			} else {
+				//Otherwise creates an emtpy box.
+				ret = '<select multiple="multiple" id="prioList" size="'+size+'">\n';
+				for (var i = 0; i < labels.length; i++) {
+					ret += '<option> </option>\n';
+				}
+				ret += '</select>\n';
+				ret += '<input type="submit" value="Order on Prio" onClick = "orderForce()">\n';
+			}
+			//returns string for use in HTML.
+			return ret;
+		}
+		//Function used to remove all items from the priority lists.
+		function erasePrio(){
+			var newPrio = [];
+			var newNum = [];
+
+			localStorage.setItem("prioLabels", newPrio);
+			localStorage.setItem("prioNum", newNum);
+		}
+	</script>
+</head>
+<body onload="init();">
+	<div id="showSVG" style="margin-left: 20px;"></div>
+
+	<div>
+		<table>
+			<tr>
+			<br>
+				<td>
+					<form  id="rowsForm" action="editSVG.html" method="get" target="_self">
+				      <table>
+				        <tr>
+			    		<b>To swap rows, input 2 numbers below: </b>
+				          <td>
+				            Row 1: <br/>
+				            Row 2: <br/>
+				          </td>
+				          <td>
+				            <input type="number" id="row1" name="row1" size="5" value=""> (leave blank for default)<br/>
+				            <input type="number" id="row2" name="row2" size="5" value=""> (leave blank for default)<br/>
+				          </td>
+				        </tr>
+				      </table>
+				      <input type="submit" value="Swap Rows">
+				      <script type="text/javascript">document.getElementById('rowsForm').onsubmit =  function(){rows()};</script>
+					</form>
+				</td>
+				<td></td>
+				<td>
+					<form  id="colsForm" action="editSVG.html" method="get" target="_self">
+						<table>
+					        <tr>
+				    		<b>To swap columns, input 2 numbers below: </b>
+					          <td>
+					            Column 1: <br/>
+					            Column 2: <br/>
+					          </td>
+					          <td>
+					            <input type="number" id="col1" name="col1" size="5" value=""> (leave blank for default)<br/>
+					            <input type="number" id="col2" name="col2" size="5" value=""> (leave blank for default)<br/>
+					          </td>
+					    	</tr>
+					    </table>
+					    <input type="submit" value="Swap Columns">
+					    <script type="text/javascript">document.getElementById('colsForm').onsubmit =  function(){cols()};</script>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<br>
+			<tr>
+				<td>
+					<form id="reorder" action="editSVG.html" method="get" target="_self">
+						<input type="submit" value="reorder">
+						<script type="text/javascript">document.getElementById('reorder').onsubmit = function(){reorder()};</script>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Show Guides:
+				</td>
+				<td>
+					<form id="guides" action="editSVG.html" method="get" target="_self">
+						<input type="radio" id="guidesNone" name="guides" value="none">None
+			            <input type="radio" id="guidesBackground" name="guides" value="background">Background
+			            <input type="radio" id="guidesLines" name="guides" value="lines">Lines
+			            <input type="submit" value="Change Guides">
+				 		<script type="text/javascript">document.getElementById('guides').onsubmit = function(){changeGuides()};</script>
+					</form>	
+				</td>	
+			</tr>
+		</table>
+	</div>
+
+	<!-- Listbox div section -->
+	<div>
+		<table>
+			<tr>
+				Available Labels | 
+				<td id="labelListBox"></td>
+				Prio Labels
+				<td id="prioList"></td>
+			</tr>
+		</table>
+		<form id="erasePrio" action="editSVG.html" method="get" target="_self">
+			<input type="submit" value="Erase Priorities">
+			<script type="text/javascript">document.getElementById('erasePrio').onsubmit = function(){erasePrio()};</script>
+		</form>
+	</div>
+		     	
+	</div>
+	<div><br/>To go back to the main page, <a href="index.html">Click here</a></div><br/>
+
+	<h3>Ways of accessing the results</h3>
+
+	You can screen shot the image or download svg.
+
+	<p>
+	Click on the button below to download the image as <b id='downloadName'></b>. This can be edited using an svg editor such as <a href="http://www.inkscape.org/">Inkscape</a>. Inkscape will also allow the diagram to be saved as gif, png, eps and other formats. This download facility only works with modern browers. If it fails for you, try upgrading your browser.
+	</p>
+	<input id="svgDownload" type="button" name="Download SVG" value="Download SVG" onClick="saveSVG();">
+
+	
+</body>
+</html>

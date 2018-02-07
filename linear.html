@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+    The Linear Diagram Generator is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+-->
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="Peter Rodgers, P.J.Rodgers@kent.ac.uk">
+
+<title>Linear Diagram</title>
+
+<script type="text/javascript" src="utils.js"></script>
+
+
+<script type="text/javascript">
+
+
+	function init() {
+		// simple check for IE 8 or less
+		try {
+			var a = [1];
+			var b = a.indexOf[0];
+		} catch(err) {
+			document.write("Your web browser is not compatible with this web page. Please update your web browser to a later version or try a different one.");
+			return;
+		}
+
+		var abstractDescriptionField = gup('abstractDescription');
+		var width = gup('width');
+		var height = gup('height');
+		var textLengthText = gup('textLengths');
+		var guides = gup('guides');
+		var order = gup('order');
+		var line = gup('line');
+		var orientation = gup('orientation');
+		var addURL = gup('addUrl');
+		var addCount = gup('addCount');
+		var strategy = gup('strategy');
+		var colour = gup('colour');
+		var temp = new Array();
+		var temp2 = new Array();
+		
+		if(width == '' || height == '' || addURL == '') {
+			document.write('Access this page via: <a href="index.html"> The linear diagram generator</a>.');
+		}
+
+		if(addURL == "yes") {
+			var webpageURL = window.location.toString().substring(0,window.location.toString().lastIndexOf("/"));
+			webpageURL += "/";
+			document.getElementById('source').innerHTML = '<small>source: <a href= "'+webpageURL+'" target="_blank">'+webpageURL+"</a></small>";
+		}
+		if(strategy == '') {
+			strategy = 'greedy';
+		}
+		if(guides == '') {
+			guides = 'background';
+		}
+		if(order == '') {
+			order = 'alpha';
+		}
+		if(line == '') {
+			line = 'narrow';
+		}
+		if(orientation == '') {
+			orientation = 'horizontal';
+		}
+		if(colour == '') {
+			colour = 'line';
+		}
+
+		setupGlobal(abstractDescriptionField);
+
+		outputLog("linear.html",abstractDescriptionField,width,height,guides,order,line,orientation,strategy,colour);
+		
+		var svgCode = generateLinearSVG(width,height,textLengthText,guides,order,line,orientation,strategy,colour,"frame");
+		localStorage.setItem("svg", svgCode);
+		localStorage.setItem("prioLabels", temp);
+		localStorage.setItem("prioNum", temp2);
+		localStorage.setItem("guides", guides);
+		document.getElementById('linearSVG').innerHTML = svgCode;
+
+		var strategyText = "";
+		if(strategy == "exact") {
+			var totalPermutations = factorial(globalZones.length);
+			strategyText = "<br/>tested: "+permutationsTried+" of "+totalPermutations+", "+(permutationsTried/totalPermutations)*100+"%";
+		}
+		
+		if(addCount == "yes") {
+			document.getElementById('count').innerHTML = '<small>line break count = '+countLineBreaks(globalZones)+strategyText+'</small>';
+		}
+
+		var duplicates = findDuplicateZoneString();
+		if(duplicates != "") {
+			document.getElementById('status').innerHTML = 'duplicate overlaps = '+duplicates;
+		}
+		
+		
+	}
+
+
+	
+</script>
+
+
+</head>
+
+<body onload="init();">
+
+<noscript><h3>Your browser has JavaScript disabled.</h3><h3>You must enable Javascript to be able to see this page properly.</h3><br/><br/><br/><br/><br/><br/></noscript>
+
+<div id="linearSVG"></div>
+<div id="source"></div>
+<div id="count"></div>
+<div id="status"></div>
+
+
+<!-- Google Analytics code --> 
+
+<script type="text/javascript">
+var accountNo = 'UA-2248758-2';
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker(accountNo);
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!-- Google Analytics code end --> 
+
+</body>
+
+
+</html>
