@@ -1,0 +1,13 @@
+Font link - <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet">
+
+Css code - 
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Playfair Display', serif;
+
+Colour Hex Codes
+
+Sky - #CAEBF2
+Carbon - #A9A9A9
+Watermelon - #FF3B3F
+Neutral - #EFEFEF
