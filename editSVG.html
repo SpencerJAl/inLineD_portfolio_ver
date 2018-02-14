@@ -2,14 +2,23 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>SVG EDITOR</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>inLineD Graph Maker</title>
+    <img src="" rel="icon"/>
 	<link rel="stylesheet" href="index.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet">
 	<script type="text/javascript" src="utils.js"></script>
 	<script type="text/javascript" src="FileSaver.js"></script>	
 	<script type="text/javascript" src="svgTools.js"></script>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<h1 id="logo"><span id="incol">inLine</span><span id="d-colour">D</span></h1>
 	<script type="text/javascript">
 		var svgCode = localStorage.getItem("svg");
 		var downloadName = "linear.svg";
@@ -316,6 +325,32 @@
 	</p>
 	<input id="svgDownload" type="button" name="Download SVG" value="Download SVG" onClick="saveSVG();">
 
+	<!-- This is the new HTML code used to create the tabs section at the bottom of the page-->
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#about">About</a></li>
+    <li><a data-toggle="tab" href="#instructions">Instructions</a></li>
+    <li><a data-toggle="tab" href="#team">Team</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="about" class="tab-pane fade in active">
+      <h3>About</h3>
+      <p>The about section.</p>
+	  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div id="instructions" class="tab-pane fade">
+      <h3>Instructions</h3>
+	  <p>The instruction section.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div id="team" class="tab-pane fade">
+      <h3>Team</h3>
+	  <p>The team sections</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+</div>
 	
 </body>
 </html>

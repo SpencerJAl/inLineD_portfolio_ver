@@ -1,2 +1,10 @@
 /* CSS declarations go here */
-
+#logo{
+	font-family: 'Playfair Display', serif;
+}
+#incol{
+	color:#A9A9A9;
+}
+#d-colour{
+	color:#FF3B3F;
+}
