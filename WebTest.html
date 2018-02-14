@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Interactive Diagram</title>
+  <meta name="description" content="Interactive Diagram">
+
+  <link rel="stylesheet" type="text/css" href="./mystyle.css">
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  
+</head>
+<body id="test">
+
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Interactive Diagram</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">About</a></li>  
+      </ul>
+    
+    </div>
+  </div>
+</nav> <!--End Navbar-->
+
+
+  <div class="container" id="dataContainer">
+    <section>
+    <div class="row">
+      <div class="col-lg-2">
+        <blockquote>
+          <p>I think you and your friend have found the last game in town. where it hurts, their wallets. It's bold. You gonna count me in?</p>
+          <footer>Graph drag and drop boxes</footer>
+        </blockquote>   
+      </div><!-- END Column-->  
+
+      <div class="col-lg-5">
+        <blockquote>
+          <p>How can you move faster than possible, fight longer than possible, without the most powerful impulse of the spirit? The fear of death.</p>
+          <footer>Graph area</footer>
+        </blockquote>
+      </div><!-- END Column--> 
+
+      <div class="col-lg-5">
+        <blockquote>
+          <p>You have inspired good. But you spat in the faces of Gotham's criminals. Didn't you think there might be casualties? Things always get worse before they get better./p>
+          <footer>Graph input area</footer>
+        </blockquote>
+      </div><!-- END Column--> 
+
+    </div><!-- END Row-->  
+    </section><!-- END Section--> 
+  </div><!-- END CONTAINER-->
+
+  <div class="demo">
+  <div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-justified nav-tabs-dropdown" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">Reduce the viewport to see the mobile tab dropdown</div>
+    <div role="tabpanel" class="tab-pane" id="profile">Profile...</div>
+    <div role="tabpanel" class="tab-pane" id="messages">Messages...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">Settings...</div>
+  </div>
+ </div>
+</div>
+
+
+<script src="./myscripts.js"></script> 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
