@@ -3,9 +3,10 @@
 
 <head>
 <meta charset="utf-8">
-<title>Interactive Diagram</title>
+<title>inLineD</title>
 <meta name="description" content="Interactive Diagram">
-
+<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="./mystyle.css">
 
 <!-- Latest compiled and minified CSS -->
@@ -24,17 +25,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>    
-    <a class="navbar-brand" href="#">Brand</a>
-  </div>
-  <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav navbar-left">
-        <li><a href="#">Left</a></li>
-        <li><a href="#about">Left</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#about">Right</a></li>
-      <li><a href="#contact">Right</a></li>
-    </ul>
+    <a class="navbar-brand" id="logo" href="#"><span id="inli">inLine</span><span id="logoD">D</span></a>
   </div>
 </nav>
 
@@ -69,19 +60,29 @@
 
 
 <div class="container">
-<ul class="nav nav-tabs" id="myTab">
-  <li class="active"><a href="#home">Home</a></li>
-  <li><a href="#profile">Profile</a></li>
-  <li><a href="#messages">Messages</a></li>
-  <li><a href="#settings">Settings</a></li>
-</ul>
- 
-<div class="tab-content">
-  <div class="tab-pane active" id="home">Home content...</div>
-  <div class="tab-pane" id="profile">Content here...</div>
-  <div class="tab-pane" id="messages">Messages...</div>
-  <div class="tab-pane" id="settings">Settings...</div>
-</div>
+  <ul class="nav nav-tabs">
+    <li class="active tab-colour"><a data-toggle="tab" class="tab-header" href="#about">About</a></li>
+    <li class="tab-colour"><a data-toggle="tab" class="tab-header" href="#instructions">Instructions</a></li>
+    <li class="tab-colour"><a data-toggle="tab" class="tab-header" href="#team">Team</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="about" class="tab-pane fade in active">
+      <h3>About</h3>
+      <p>Welcome to inLineD</p>
+	  <p>inLineD is a web application to help you create graphs which will help you when creating '' style graphs, just click on the intstrusction tab in order to learn how to start using this app or the team tab to learn about those who have worked on this style of graph</p>
+	  </div>
+    <div id="instructions" class="tab-pane fade">
+      <h3>Instructions</h3>
+	  <p>The instruction section.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div id="team" class="tab-pane fade">
+      <h3>Team</h3>
+	  <p>The team sections</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
 </div>
 
 
