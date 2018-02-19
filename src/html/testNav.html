@@ -5,8 +5,9 @@
 <meta charset="utf-8">
 <title>inLineD</title>
 <meta name="description" content="Interactive Diagram">
-<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 
 <!-- Latest compiled and minified CSS -->
@@ -14,6 +15,20 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../css/jquery-css.css"/>
+
+<script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+</script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
 
 </head>
 <body id="test">
@@ -32,17 +47,19 @@
 <div class="container" id="dataContainer">
   <section>
   <div class="row">
-    <div class="col-lg-2">
-      <ul>
-  <li>pet</li>
-   <li>mammal</li>
-    <li>pet mammal</li>
-    <li>mammal dog</li>
-    <li>dog mammal pet</li>
+<div class="col-lg-3">
+
+<ul id="sortable">
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
 </ul>
 
-
-    </div><!-- END Column-->
+</div><!-- END Column-->
 
     <div class="col-lg-5">
 
@@ -50,7 +67,7 @@
 
     </div><!-- END Column-->
 
-    <div class="col-lg-5" >
+    <div class="col-lg-4" >
         <p id="par">You have inspired good. But you spat in the faces of Gotham's criminals. Didn't you think there might be casualties? Things always get worse before they get better.<p>
     </div><!-- END Column-->
 
@@ -90,13 +107,5 @@
     <div class="footer">
   <p>Footer</p>
 </div>
-
-
-
-
-<script src="./myscripts.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
