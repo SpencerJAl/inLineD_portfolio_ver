@@ -18,7 +18,7 @@
 
 <title>Linear Diagram</title>
 
-<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="../js/utils.js"></script>
 
 
 <script type="text/javascript">
@@ -48,7 +48,7 @@
 		var colour = gup('colour');
 		var temp = new Array();
 		var temp2 = new Array();
-		
+
 		if(width == '' || height == '' || addURL == '') {
 			document.write('Access this page via: <a href="index.html"> The linear diagram generator</a>.');
 		}
@@ -80,7 +80,7 @@
 		setupGlobal(abstractDescriptionField);
 
 		outputLog("linear.html",abstractDescriptionField,width,height,guides,order,line,orientation,strategy,colour);
-		
+
 		var svgCode = generateLinearSVG(width,height,textLengthText,guides,order,line,orientation,strategy,colour,"frame");
 		localStorage.setItem("svg", svgCode);
 		localStorage.setItem("prioLabels", temp);
@@ -93,7 +93,7 @@
 			var totalPermutations = factorial(globalZones.length);
 			strategyText = "<br/>tested: "+permutationsTried+" of "+totalPermutations+", "+(permutationsTried/totalPermutations)*100+"%";
 		}
-		
+
 		if(addCount == "yes") {
 			document.getElementById('count').innerHTML = '<small>line break count = '+countLineBreaks(globalZones)+strategyText+'</small>';
 		}
@@ -102,12 +102,12 @@
 		if(duplicates != "") {
 			document.getElementById('status').innerHTML = 'duplicate overlaps = '+duplicates;
 		}
-		
-		
+
+
 	}
 
 
-	
+
 </script>
 
 
@@ -123,7 +123,7 @@
 <div id="status"></div>
 
 
-<!-- Google Analytics code --> 
+<!-- Google Analytics code -->
 
 <script type="text/javascript">
 var accountNo = 'UA-2248758-2';
@@ -136,7 +136,7 @@ var pageTracker = _gat._getTracker(accountNo);
 pageTracker._trackPageview();
 } catch(err) {}</script>
 
-<!-- Google Analytics code end --> 
+<!-- Google Analytics code end -->
 
 </body>
 

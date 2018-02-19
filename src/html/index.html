@@ -6,14 +6,14 @@
 
 <title>Linear Diagram Generator</title>
 
-<script type="text/javascript" src="utils.js"></script>
-<script type="text/javascript" src="FileSaver.js"></script>
+<script type="text/javascript" src="../js/utils.js"></script>
+<script type="text/javascript" src="../js/FileSaver.js"></script>
 
 
 <script type="text/javascript">
 
   var downloadName = "linear.svg";
-  
+
   var abstractDescription;
   var width;
   var height;
@@ -24,10 +24,10 @@
   var orientation = "horizontal";
   var colour = "line";
   var textLengthsText = "";
-  
+
   function init() {
-  
-    
+
+
     // simple check for IE 8 or less
     try {
       var a = [1];
@@ -36,7 +36,7 @@
       document.write("Your web browser is not compatible with this web page. Please update your web browser to a later version or try a different one.");
       return;
     }
-    
+
     var date = new Date();
 
 //    downloadName = "linear-"+date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"T"+date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds()+"-"+date.getMilliseconds()+".svg";
@@ -50,7 +50,7 @@
 //      abstractDescriptionField = "mammal%0D%0Adog+mammal+pet%0D%0Apet+mammal%0D%0Amammal+dog%0D%0Apet%0D%0A";
       abstractDescriptionField = "pet%0D%0Amammal%0D%0Apet+mammal%0D%0Amammal+dog%0D%0Adog+mammal+pet"
     }
-    
+
 
     setupGlobal(abstractDescriptionField);
 
@@ -62,7 +62,7 @@
     }
 
     var lengths = findTextLengths();
-    
+
     for(var i=0; i < lengths.length; i++) {
       textLengthsText += parseInt(lengths[i])
       if(i<lengths.length-1) {
@@ -70,39 +70,39 @@
       }
     }
     textLengthsText = textLengthsText.trim();
-    
+
     outputLog("index.html",abstractDescriptionField,width,height,guides)
-    
+
     if(isNumber(height)) {
       ySpacing = height/(globalContours.length+1);
       document.getElementById('height').value = height;
     } else {
       height = ySpacing*(globalContours.length+1)
     }
-    
+
     // if(guides == "none") {
     //   document.getElementById('guidesNone').checked = true;
-    //   document.getElementById('guidesBackground').checked = false;      
-    //   document.getElementById('guidesLines').checked = false;     
+    //   document.getElementById('guidesBackground').checked = false;
+    //   document.getElementById('guidesLines').checked = false;
     // } else if(guides == "background") {
     //   document.getElementById('guidesNone').checked = false;
-    //   document.getElementById('guidesBackground').checked = true;     
-    //   document.getElementById('guidesLines').checked = false;     
+    //   document.getElementById('guidesBackground').checked = true;
+    //   document.getElementById('guidesLines').checked = false;
     // } else {
     //   guides = "lines";
     //   document.getElementById('guidesNone').checked = false;
-    //   document.getElementById('guidesBackground').checked = false;      
-    //   document.getElementById('guidesLines').checked = true;      
-    // }   
+    //   document.getElementById('guidesBackground').checked = false;
+    //   document.getElementById('guidesLines').checked = true;
+    // }
     document.getElementById('abstractDescription').innerHTML = globalAbstractDescription;
-    
+
     var embedCodeNo = generateLineariFrame(abstractDescriptionField,"no");
     var embedCodeYes = generateLineariFrame(abstractDescriptionField,"yes");
     document.getElementById('embeddedLinear').innerHTML = embedCodeNo;
     document.getElementById('embedCode').innerHTML = "<code>"+escapeHTML(embedCodeYes)+"</code>";
 
     document.getElementById('downloadName').innerHTML = getDownloadName();
-        
+
   }
 
   function findTextLengths() {
@@ -121,10 +121,10 @@
     return lengths;
   }
 
-  
-  
+
+
   function generateLineariFrame(abstractDescriptionField,includeUrl) {
-  
+
     var frameHeight = parseInt(height);
     var frameWidth = parseInt(width)+findExtraSpace(textLengthsText);
     frameHeight += 50;
@@ -135,7 +135,7 @@
     var ret = '<iframe src="'+webpageURL+'/linear.html?width='+width+'&height='+height+'&textLengths='+textLengthsText+'&extraSpace=0'+'&guides='+guides+'&addUrl='+includeUrl+'&addCount=no'+'&strategy='+strategy+'&abstractDescription='+abstractDescriptionField+'" width="'+frameWidth+'" height="'+frameHeight+'" scrolling="no"></iframe>';
     return ret;
   }
-  
+
   function saveSVG() {
     var svgString = generateLinearSVG(width,height,textLengthsText,guides,order,line,orientation,strategy,colour,"download");
     var blob = new Blob([svgString], {
@@ -147,8 +147,8 @@
   function getDownloadName() {
     return downloadName;
   }
-  
-  
+
+
 </script>
 
 
@@ -202,7 +202,7 @@
 <p>This is a diagram that shows the intersections of a number of sets. It can be used as an alternative to a Venn or Euler diagram. There is evidence that linear diagrams are more easily interpreted than the other kinds of diagram<sup>1,2</sup>.<br/><a href="guide.html">Some help on how to interpret linear diagrams</a>.</p>
 
 A paper detailing the process of designing this tool is given here: <br>
-<ul><li><b>Visualizing Sets with Linear Diagrams. Peter Rodgers, Gem Stapleton and Peter Chapman. ACM Transactions on Computer Human Interaction 22(6) pp. 27:1-27:39 September 2015. doi:10.1145/2810012</b>. <a href="https://kar.kent.ac.uk/50020">Online copy</a>.</li></ul> 
+<ul><li><b>Visualizing Sets with Linear Diagrams. Peter Rodgers, Gem Stapleton and Peter Chapman. ACM Transactions on Computer Human Interaction 22(6) pp. 27:1-27:39 September 2015. doi:10.1145/2810012</b>. <a href="https://kar.kent.ac.uk/50020">Online copy</a>.</li></ul>
 If you use the tool in your research, we encourage you to reference this publication.
 
 <hr>
@@ -271,7 +271,7 @@ Developed by: <a href="http://www.cs.kent.ac.uk/people/staff/pjr/"> Peter Rodger
 </small>
 
 
-<!-- Google Analytics code --> 
+<!-- Google Analytics code -->
 
 <script type="text/javascript">
 var accountNo = 'UA-2248758-2';
@@ -284,9 +284,8 @@ var pageTracker = _gat._getTracker(accountNo);
 pageTracker._trackPageview();
 } catch(err) {}</script>
 
-<!-- Google Analytics code end --> 
+<!-- Google Analytics code end -->
 
 </body>
 
 </html>
-
