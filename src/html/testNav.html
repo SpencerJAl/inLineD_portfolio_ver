@@ -4,10 +4,11 @@
 <head>
 <meta charset="utf-8">
 <title>inLineD</title>
-<meta name="description" content="Interactive Diagram">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 
+  <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 
 <!-- Latest compiled and minified CSS -->
@@ -17,20 +18,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <link rel="stylesheet" href="../css/jquery-css.css"/>
-
-<script>
+  <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
   $( function() {
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
   } );
-</script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-<!-- Latest compiled and minified JavaScript -->
-
-</head>
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
 <body id="test">
 
 <nav class="navbar navbar-default" role="navigation">
