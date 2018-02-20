@@ -5,20 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>inLineD Graph Maker</title>
     <img src="" rel="icon"/>
-	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="../css/index.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet">
-	<script type="text/javascript" src="utils.js"></script>
-	<script type="text/javascript" src="FileSaver.js"></script>	
-	<script type="text/javascript" src="svgTools.js"></script>
+
 	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/jquery-css.css"/>
+  <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  </style>
+  
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script type="text/javascript" src="../js/utils.js"></script>
+<script type="text/javascript" src="../js/FileSaver.js"></script>	
+<script type="text/javascript" src="../js/svgTools.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<h1 id="logo"><span id="incol">inLine</span><span id="d-colour">D</span></h1>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 	<script type="text/javascript">
 		var svgCode = localStorage.getItem("svg");
 		var downloadName = "linear.svg";
@@ -223,6 +237,10 @@
 	</script>
 </head>
 <body onload="init();">
+
+
+<h1 id="logo"><span id="incol">inLine</span><span id="d-colour">D</span></h1>
+
 	<div id="showSVG" style="margin-left: 20px;"></div>
 
 	<div>
