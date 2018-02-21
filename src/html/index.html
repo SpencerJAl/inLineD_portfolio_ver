@@ -6,27 +6,24 @@
 <title>inLineD</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-    <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet">
 
 	<!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
-  <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/jquery-css.css"/>
+  <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
   <style>
   #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
   #sortable li span { position: absolute; margin-left: -1.3em; }
   </style>
-  
+
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="../js/utils.js"></script>
-<script type="text/javascript" src="../js/FileSaver.js"></script>	
+<script type="text/javascript" src="../js/FileSaver.js"></script>
 <script type="text/javascript" src="../js/svgTools.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -43,33 +40,33 @@
 		var num1;
 		var num2;
 		var guides;
-		
+
 		function init(){
 			//gets Guides from local storage
 			guides = localStorage.getItem("guides");
 			//Updates Guides to reflect appropriate on page and diagram.
 			if(guides == 'lines'){
 				document.getElementById('guidesNone').checked = false;
-		  		document.getElementById('guidesBackground').checked = false;      
-		  		document.getElementById('guidesLines').checked = true; 
+		  		document.getElementById('guidesBackground').checked = false;
+		  		document.getElementById('guidesLines').checked = true;
 				svgCode = localStorage.getItem("svg");//Gets Svg string from local storage.
 				document.getElementById('showSVG').innerHTML = svgCode;	//draws image
 			} else if(guides == 'background'){
 				document.getElementById('guidesNone').checked = false;
-		  		document.getElementById('guidesBackground').checked = true;      
+		  		document.getElementById('guidesBackground').checked = true;
 		  		document.getElementById('guidesLines').checked = false;
 				svgCode = guidesBackground();//removes guides for image.
 				document.getElementById('showSVG').innerHTML = svgCode;	//draws image
 			} else if(guides == 'none'){
 				document.getElementById('guidesNone').checked = true;
-		  		document.getElementById('guidesBackground').checked = false;      
+		  		document.getElementById('guidesBackground').checked = false;
 		  		document.getElementById('guidesLines').checked = false;
 				svgCode = guidesNone();//removes guides for image.
 				document.getElementById('showSVG').innerHTML = svgCode;	//draws image
-			} 
-			
+			}
+
 			//Date used for saving file.
-			var date = new Date();	
+			var date = new Date();
 			downloadName = "linear-"+date.getMinutes()+date.getSeconds()+date.getMilliseconds()+".svg";
 			//Labels used to populate list box and select prio for sorting.
 			var labels = labelListBox();
@@ -77,7 +74,7 @@
 			var prioLabels = localStorage.getItem("prioLabels");//retrieves priority labels from local storage
 			var prioNum = localStorage.getItem("prioNum");//retrieves priority line numbers from local storage.
 			//displays any selected prioity labels.
-			document.getElementById('prioList').innerHTML = prioList();		
+			document.getElementById('prioList').innerHTML = prioList();
 		}
 		//Function used to pass values to swap rows function (from form)
 		function rows(){
@@ -121,8 +118,8 @@
 			//the below loop puts the values back into array form.
 			var prioNum = new Array();
 			for (var i = 0; i < temp.length; i++) {
-				prioNum.push(temp[i]);	
-			}			
+				prioNum.push(temp[i]);
+			}
 			//passed the svg string and the array of priority line numbers to the sortForce function (see SVGTools.js)
 			sortForce(prioNum);
 		}
@@ -155,9 +152,9 @@
 			}
 			ret += '</select>\n';
 			ret += '<input type="submit" value=">>" onClick = "addToPrio()">\n';
-			ret += '</form>\n';	
+			ret += '</form>\n';
 			//returns string for use in HTML page.
-			return ret;	
+			return ret;
 		}
 		//Function used to add selected labels from standard list to the priority listbox.
 		function addToPrio(){
@@ -179,11 +176,11 @@
 			for (var i = 0; i < labelsList.length; i++) {
 				current = labelsList[i];
 				//if selected, adds to priority List providing it isn't already present.
-				if(current.selected == true && temp.includes(labels[i]) != true ){	
+				if(current.selected == true && temp.includes(labels[i]) != true ){
 					tempNum.push(i);
 					tempLab.push(labels[i]);
 					tempLab.push("");
-				} 
+				}
 			}
 			//adds new prio to the existing list
 			prioLabels = prioLabels.concat(tempLab);
@@ -326,8 +323,8 @@
 			            <input type="radio" id="guidesLines" name="guides" value="lines">Lines
 			            <input type="submit" value="Change Guides">
 				 		<script type="text/javascript">document.getElementById('guides').onsubmit = function(){changeGuides()};</script>
-					</form>	
-				</td>	
+					</form>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -336,7 +333,7 @@
 	<div>
 		<table>
 			<tr>
-				Available Labels | 
+				Available Labels |
 				<td id="labelListBox"></td>
 				Prio Labels
 				<td id="prioList"></td>
@@ -347,7 +344,7 @@
 			<script type="text/javascript">document.getElementById('erasePrio').onsubmit = function(){erasePrio()};</script>
 		</form>
 	</div>
-		     	
+
 	</div>
 </div>
   </section><!-- END Section-->
