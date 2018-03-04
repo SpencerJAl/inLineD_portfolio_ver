@@ -18,6 +18,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <link rel="stylesheet" href="../css/jquery-css.css"/>
+<script>
+// A JS function to add in a new drag and drop tab
+function add_function() {
+    var ul = document.getElementById("sortable"); // Selects the ui list
+    var li = document.createElement("li"); // adds a new LI tag
+	li.appendChild(document.createTextNode("Item 8")); // adds the text within the new item
+	li.setAttribute("class", "ui-state-default"); // adds the styling class to it
+	 // Work in progress DONT TOUCH !! li.setAttribute("id", "ui-state-default"); // adds the item ID  to it
+    ul.appendChild(li); // is the command to add the item to the element
+}
+</script>
   <style>
   #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
@@ -52,13 +63,13 @@
 <div class="col-lg-3">
 
 <ul id="sortable">
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+  <li class="ui-state-default">Item 1</li>
+  <li class="ui-state-default">Item 2</li>
+  <li class="ui-state-default">Item 3</li>
+  <li class="ui-state-default">Item 4</li>
+  <li class="ui-state-default">Item 5</li>
+  <li class="ui-state-default">Item 6</li>
+  <li class="ui-state-default">Item 7</li>
 </ul>
 
 </div><!-- END Column-->
@@ -71,7 +82,8 @@
 
     <div class="col-lg-4" >
         <p id="par">You have inspired good. But you spat in the faces of Gotham's criminals. Didn't you think there might be casualties? Things always get worse before they get better.<p>
-    </div><!-- END Column-->
+    <button type="button" onClick="add_function()"> Add a new Item Tab </button>
+	</div><!-- END Column-->
 
   </div><!-- END Row-->
   </section><!-- END Section-->
