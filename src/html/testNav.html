@@ -6,7 +6,6 @@
 <title>inLineD</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  
   <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
@@ -17,16 +16,18 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<link rel="stylesheet" href="../css/jquery-css.css"/>
 <script>
 // A JS function to add in a new drag and drop tab
 function add_function() {
     var ul = document.getElementById("sortable"); // Selects the ui list
     var li = document.createElement("li"); // adds a new LI tag
-	li.appendChild(document.createTextNode("Item 8")); // adds the text within the new item
-	li.setAttribute("class", "ui-state-default"); // adds the styling class to it
-	 // Work in progress DONT TOUCH !! li.setAttribute("id", "ui-state-default"); // adds the item ID  to it
+	var x; //inital value for the id and tab number
+	x = 8;
+	li.appendChild(document.createTextNode("Item " + x)); // adds the text within the new item
+	li.setAttribute("class", "d_and_d-style"); // adds the styling class to it
+	li.setAttribute("id", x); // adds the item ID  to it
     ul.appendChild(li); // is the command to add the item to the element
+	x=x+1; // increments the value of x
 }
 </script>
   <style>
@@ -63,13 +64,13 @@ function add_function() {
 <div class="col-lg-3">
 
 <ul id="sortable">
-  <li class="ui-state-default">Item 1</li>
-  <li class="ui-state-default">Item 2</li>
-  <li class="ui-state-default">Item 3</li>
-  <li class="ui-state-default">Item 4</li>
-  <li class="ui-state-default">Item 5</li>
-  <li class="ui-state-default">Item 6</li>
-  <li class="ui-state-default">Item 7</li>
+  <li class ="d_and_d-style" id="1"><h4>Item 1</h4><!--<img src"../img/#" alt="graph background"/> --></li>
+  <li class ="d_and_d-style" id="2"><h4>Item 2</h4></li>
+  <li class ="d_and_d-style" id="3"><h4>Item 3</h4></li>
+  <li class ="d_and_d-style" id="4"><h4>Item 4</h4></li>
+  <li class ="d_and_d-style" id="5"><h4>Item 5</h4></li>
+  <li class ="d_and_d-style" id="6"><h4>Item 6</h4></li>
+  <li class ="d_and_d-style" id="7"><h4>Item 7</h4></li>
 </ul>
 
 </div><!-- END Column-->

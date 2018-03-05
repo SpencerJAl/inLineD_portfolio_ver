@@ -39,6 +39,9 @@
 	position: absolute;
 	margin-left: -1.3em;
 }
+.d_and_d-style{
+	background-color: #a9a9a9 !important;
+}
 
 .ui-draggable {
 	background-position: top;

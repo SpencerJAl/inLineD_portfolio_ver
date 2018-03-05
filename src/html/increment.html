@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function incrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 8 : value;
+    value++;
+    document.getElementById('number').value = value;
+}
+</script>
+</head>
+<body>
+<form>
+   <input type="text" id="number" value="0"/>
+   <input type="button" onclick="incrementValue()" value="Increment Value" />
+</form>
+</body>
+</html>
