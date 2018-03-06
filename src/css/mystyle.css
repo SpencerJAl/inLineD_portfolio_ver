@@ -24,7 +24,7 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	width: 60%;
+	width: 50%;
 }
 
 #sortable li {
@@ -39,10 +39,21 @@
 	position: absolute;
 	margin-left: -1.3em;
 }
+#graph_ul{
+	width:50%;
+}
+.hr_length{
+	widht:15px;
+	margin-right:2px;
+}
 .d_and_d-style{
 	background-color: #a9a9a9 !important;
 }
 
+.graph_li{
+	border: 2px black solid;
+	background-color:#113399;
+}
 .ui-draggable {
 	background-position: top;
 }

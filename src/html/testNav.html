@@ -18,16 +18,33 @@
 
 <script>
 // A JS function to add in a new drag and drop tab
-var x=8
+var x=0
+var repeat=0
 function add_function() {
-    var name = document.getElementById("name").value;
+    //variable list
+    var name = document.getElementById("name").value; // gets the tabs name from the input feild
     var ul = document.getElementById("sortable"); // Selects the ui list
     var li = document.createElement("li"); // adds a new LI tag
-	li.appendChild(document.createTextNode( name)); // adds the text within the new item
-	li.setAttribute("class", "d_and_d-style"); // adds the styling class to it
-	li.setAttribute("id", x); // adds the item ID  to it
+	var graph_ul = document.getElementById("graph"); //Selects the graph UL
+	var graph_li = document.createElement("li"); // adds a new LI tag
+	var h4 = document.createElement("h4"); // creates h4 tag for list names
+	var hr = document.createElement("hr");// creats hr to display information in the graph
+	var style = document.getElementById("colour").value // gets the users colour choice
+    var repeat = document.getElementByID("data").value // gets the value data for loop
+	
+	li.appendChild(h4); // adds the h4 within the new item
+	h4.appendChild(document.createTextNode(name)); // adds the text within the new item
+	hr.setAttribute("id", style); // adds the custom colour to the hr tag
+	hr.setAttribute("class", "hr_length"); // sets the hr length
+	li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
+	graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
+	
     ul.appendChild(li); // is the command to add the item to the element
-	//x++; // increments the value of x
+	graph_ul.appendChild(graph_li); // adds a new line to the graph
+	for ( i = 0; i < repeat; i++){
+	graph_li.appendchild(hr) // Appends the hr tag for the graph
+	}
+	x++; // increments the value of x
 }
 </script>
   <style>
@@ -61,30 +78,34 @@ function add_function() {
 <div class="container" id="dataContainer">
   <section>
   <div class="row">
-<div class="col-lg-3">
+<div class="col-sm-8">
 
 <ul id="sortable">
-  <li class ="d_and_d-style" id="1"><h4>Item 1</h4><!--<img src"../img/#" alt="graph background"/> --></li>
-  <li class ="d_and_d-style" id="2"><h4>Item 2</h4></li>
-  <li class ="d_and_d-style" id="3"><h4>Item 3</h4></li>
-  <li class ="d_and_d-style" id="4"><h4>Item 4</h4></li>
-  <li class ="d_and_d-style" id="5"><h4>Item 5</h4></li>
-  <li class ="d_and_d-style" id="6"><h4>Item 6</h4></li>
-  <li class ="d_and_d-style" id="7"><h4>Item 7</h4></li>
+  <!--<img src"../img/#" alt="graph background"/> -->
+ 
 </ul>
+<ul id="graph_ul">
+	  
+</ul>
+       
 
 </div><!-- END Column-->
 
-    <div class="col-lg-5">
-
-         <img src="../img/lines.png" alt="Smiley face" height="500" width="500">
-
-    </div><!-- END Column-->
-
-    <div class="col-lg-4" >
-      First Name: <input type="text" id="name" value="Mickey">
-        <p id="par">You have inspired good. But you spat in the faces of Gotham's criminals. Didn't you think there might be casualties? Things always get worse before they get better.<p>
-    <button type="button" onClick="add_function()"> Add a new Item Tab </button>
+    <div class="col-sm-4" >
+	<!-- <form action="#" onSubmit="return add_function(this)"-->
+	 <input type="text" id="name" value="" placeholder="Enter a tab value"/>
+	 <input type="number" id="data" value="" placeholder="Enter number of times data occurs"/>
+	 <select name="colour" id="colour">
+	  <option value="lightblue">Light Blue</option>
+	  <option value="green">Green</option>
+	  <option value="blue">Blue</option>
+	  <option value="red">Red</option>
+	  <option value="purple">Purple</option>
+	  <option value="orange">Orange</option>
+	  <option value="yellow">Yellow</option>
+	  <option value="brown">Brown</option>
+	</select>
+    <button type="submit" onClick="add_function()" class="btn btn-primary"> Add a new Item Tab </button>
 	</div><!-- END Column-->
 
   </div><!-- END Row-->
