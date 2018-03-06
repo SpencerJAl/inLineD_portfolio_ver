@@ -30,7 +30,7 @@ function add_function() {
 	var h4 = document.createElement("h4"); // creates h4 tag for list names
 	var hr = document.createElement("hr");// creats hr to display information in the graph
 	var style = document.getElementById("colour").value // gets the users colour choice
-    var repeat = document.getElementByID("data").value // gets the value data for loop
+    var repeat = document.getElementById("data").value // gets the value data for loop
 	
 	li.appendChild(h4); // adds the h4 within the new item
 	h4.appendChild(document.createTextNode(name)); // adds the text within the new item
@@ -40,10 +40,11 @@ function add_function() {
 	graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
 	
     ul.appendChild(li); // is the command to add the item to the element
-	graph_ul.appendChild(graph_li); // adds a new line to the graph
-	for ( i = 0; i < repeat; i++){
-	graph_li.appendchild(hr) // Appends the hr tag for the graph
+	for ( i = 0; i < repeat; i++){ // a for loop to input the users data as many times as is needed
+	graph_li.appendChild(hr) // Appends the hr tag for the graph
 	}
+	graph_ul.appendChild(graph_li); // adds a new line to the graph
+	
 	x++; // increments the value of x
 }
 </script>
@@ -92,7 +93,7 @@ function add_function() {
 </div><!-- END Column-->
 
     <div class="col-sm-4" >
-	<!-- <form action="#" onSubmit="return add_function(this)"-->
+	
 	 <input type="text" id="name" value="" placeholder="Enter a tab value"/>
 	 <input type="number" id="data" value="" placeholder="Enter number of times data occurs"/>
 	 <select name="colour" id="colour">

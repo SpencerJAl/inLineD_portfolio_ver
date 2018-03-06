@@ -42,6 +42,30 @@
 #graph_ul{
 	width:50%;
 }
+#lightblue{
+	border-color:lightblue;
+}
+#green{
+	border-color:green;
+}
+#blue{
+border-color:blue;	
+}
+#red{
+	border-color:red;
+}
+#yellow{
+	border-color:yellow;
+}
+#purple{
+	border-color:purple;
+}
+#brown{
+	border-color:brown;
+}
+#orange{
+	border-color:orange;
+}
 .hr_length{
 	widht:15px;
 	margin-right:2px;
