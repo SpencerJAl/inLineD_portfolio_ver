@@ -18,16 +18,15 @@
 
 <script>
 // A JS function to add in a new drag and drop tab
+var x=8
 function add_function() {
     var ul = document.getElementById("sortable"); // Selects the ui list
-    var li = document.createElement("li"); // adds a new LI tag
-	var x; //inital value for the id and tab number
-	x = 8;
+    var li = document.createElement("li"); // adds a new LI tag   
 	li.appendChild(document.createTextNode("Item " + x)); // adds the text within the new item
 	li.setAttribute("class", "d_and_d-style"); // adds the styling class to it
 	li.setAttribute("id", x); // adds the item ID  to it
     ul.appendChild(li); // is the command to add the item to the element
-	x=x+1; // increments the value of x
+	x++; // increments the value of x
 }
 </script>
   <style>
