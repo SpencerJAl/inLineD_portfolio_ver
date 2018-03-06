@@ -6,7 +6,7 @@
 <title>inLineD</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
   <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
 
@@ -20,13 +20,14 @@
 // A JS function to add in a new drag and drop tab
 var x=8
 function add_function() {
+    var name = document.getElementById("name").value;
     var ul = document.getElementById("sortable"); // Selects the ui list
-    var li = document.createElement("li"); // adds a new LI tag   
-	li.appendChild(document.createTextNode("Item " + x)); // adds the text within the new item
+    var li = document.createElement("li"); // adds a new LI tag
+	li.appendChild(document.createTextNode( name)); // adds the text within the new item
 	li.setAttribute("class", "d_and_d-style"); // adds the styling class to it
 	li.setAttribute("id", x); // adds the item ID  to it
     ul.appendChild(li); // is the command to add the item to the element
-	x++; // increments the value of x
+	//x++; // increments the value of x
 }
 </script>
   <style>
@@ -81,6 +82,7 @@ function add_function() {
     </div><!-- END Column-->
 
     <div class="col-lg-4" >
+      First Name: <input type="text" id="name" value="Mickey">
         <p id="par">You have inspired good. But you spat in the faces of Gotham's criminals. Didn't you think there might be casualties? Things always get worse before they get better.<p>
     <button type="button" onClick="add_function()"> Add a new Item Tab </button>
 	</div><!-- END Column-->
