@@ -24,7 +24,7 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	width: 50%;
+	width: 25%;
 }
 
 #sortable li {
@@ -40,7 +40,11 @@
 	margin-left: -1.3em;
 }
 #graph_ul{
-	width:50%;
+	width:70%;
+	list-style-type:none;
+	margin-right: 0;
+	padding: 0;
+	margin-left: auto;
 }
 #lightblue{
 	border-color:lightblue;
@@ -67,16 +71,18 @@ border-color:blue;
 	border-color:orange;
 }
 .hr_length{
-	widht:15px;
+	width:15px;
 	margin-right:2px;
 }
 .d_and_d-style{
 	background-color: #a9a9a9 !important;
+	
 }
 
 .graph_li{
 	border: 2px black solid;
-	background-color:#113399;
+	background-color:#333333;
+	
 }
 .ui-draggable {
 	background-position: top;
