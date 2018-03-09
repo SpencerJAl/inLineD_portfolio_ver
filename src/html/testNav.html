@@ -1,157 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="utf-8">
-<title>inLineD</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="../img/icon.png" rel="icon"/>
-  <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href="../css/mystyle.css">
+	<title>inLineD</title>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="../img/icon.png" rel="icon">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet">
+	<link href="../css/mystyle.css" rel="stylesheet" type="text/css"><!-- Latest compiled and minified CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"><!-- Optional theme -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script>
+	// A JS function to add in a new drag and drop tab
+	var x=0
+	var repeat=0
+	function add_function() {
+	   //variable list
+	   var name = document.getElementById("name").value; // gets the tabs name from the input feild
+	   var ul = document.getElementById("sortable"); // Selects the ui list
+	   var li = document.createElement("li"); // adds a new LI tag
+	   var graph_ul = document.getElementById("graph"); //Selects the graph UL
+	   //var graph_
+	   var graph_li = document.createElement("li"); // adds a new LI tag
+	   var h4 = document.createElement("h4"); // creates h4 tag for list names
+	   var hr = document.createElement("hr");// creats hr to display information in the graph
+	   var style = document.getElementById("colour").value // gets the users colour choice
+	   var repeat = document.getElementById("data").value // gets the value data for loop
 
-<script>
-// A JS function to add in a new drag and drop tab
-var x=0
-var repeat=0
-function add_function() {
-    //variable list
-    var name = document.getElementById("name").value; // gets the tabs name from the input feild
-    var ul = document.getElementById("sortable"); // Selects the ui list
-    var li = document.createElement("li"); // adds a new LI tag
-	var graph_ul = document.getElementById("graph"); //Selects the graph UL
-	//var graph_
-	var graph_li = document.createElement("li"); // adds a new LI tag
-	var h4 = document.createElement("h4"); // creates h4 tag for list names
-	var hr = document.createElement("hr");// creats hr to display information in the graph
-	var style = document.getElementById("colour").value // gets the users colour choice
-    var repeat = document.getElementById("data").value // gets the value data for loop
-	
-	li.appendChild(h4); // adds the h4 within the new item
-	h4.appendChild(document.createTextNode(name)); // adds the text within the new item
-	hr.setAttribute("id", style); // adds the custom colour to the hr tag
-	hr.setAttribute("class", "hr_length"); // sets the hr length
-	li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
-	graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
-	
-    ul.appendChild(li); // is the command to add the item to the element
-	for ( i = 0; i < repeat; i++){ // a for loop to input the users data as many times as is needed
-	graph_li.appendChild(hr) // Appends the hr tag for the graph
+	   li.appendChild(h4); // adds the h4 within the new item
+	   h4.appendChild(document.createTextNode(name)); // adds the text within the new item
+	   hr.setAttribute("id", style); // adds the custom colour to the hr tag
+	   hr.setAttribute("class", "hr_length"); // sets the hr length
+	   li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
+	   graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
+
+	   ul.appendChild(li); // is the command to add the item to the element
+	   for ( i = 0; i < repeat; i++){ // a for loop to input the users data as many times as is needed
+	   graph_li.appendChild(hr) // Appends the hr tag for the graph
+	   }
+	   graph_ul.appendChild(graph_li); // adds a new line to the graph
+
+	   x++; // increments the value of x
 	}
-	graph_ul.appendChild(graph_li); // adds a new line to the graph
-	
-	x++; // increments the value of x
-}
-</script>
-  <style>
-  #sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
-  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-  #sortable li span { position: absolute; margin-left: -1.3em; }
-  </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  } );
-  </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
+	</script>
+
+	<style>
+	 #sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
+	 #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+	 #sortable li span { position: absolute; margin-left: -1.3em; }
+	</style>
+	<script src="https://code.jquery.com/jquery-1.12.4.js">
+	</script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
+	</script>
+	<script>
+	 $( function() {
+	   $( "#sortable" ).sortable();
+	   $( "#sortable" ).disableSelection();
+	 } );
+
+	</script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+
+</head>
+
 <body id="test">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="#" id="logo"><span id="inli">inLine</span><span id="logoD">D</span></a>
+		</div>
+	</nav>
 
-<nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" id="logo" href="#"><span id="inli">inLine</span><span id="logoD">D</span></a>
-  </div>
-</nav>
+	<div class="container" id="dataContainer">
+		<section>
+			<div class="row">
+				<div class="col-sm-8">
+					<ul id="sortable">
+						<!--<img src"../img/#" alt="graph background"/> -->
+					</ul>
+					<ul id="graph"></ul>
+				</div>
+        <!-- END Column-->
+				<div class="col-sm-4">
+					<input id="name" placeholder="Enter a tab value" type="text" value=""> <input id="data" placeholder="Enter number of times data occurs" type="number" value=""> <select id="colour" name="colour">
+						<option value="lightblue">
+							Light Blue
+						</option>
+						<option value="green">
+							Green
+						</option>
+						<option value="blue">
+							Blue
+						</option>
+						<option value="red">
+							Red
+						</option>
+						<option value="purple">
+							Purple
+						</option>
+						<option value="orange">
+							Orange
+						</option>
+						<option value="yellow">
+							Yellow
+						</option>
+						<option value="brown">
+							Brown
+						</option>
+					</select> <button class="btn btn-primary" onclick="add_function()" type="submit">Add a new Item Tab</button>
+				</div>
+        <!-- END Column-->
+			</div>
+      <!-- END Row-->
+		</section>
+    <!-- END Section-->
+	</div>
+  <!-- END CONTAINER-->
 
-<div class="container" id="dataContainer">
-  <section>
-  <div class="row">
-<div class="col-sm-8">
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active tab-colour">
+				<a class="tab-header" data-toggle="tab" href="#about">About</a>
+			</li>
+			<li class="tab-colour">
+				<a class="tab-header" data-toggle="tab" href="#instructions">Instructions</a>
+			</li>
+			<li class="tab-colour">
+				<a class="tab-header" data-toggle="tab" href="#team">Team</a>
+			</li>
+			<li class="tab-colour">
+				<a class="tab-header" data-toggle="tab" href="#svg">SVG Download</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane fade in active" id="about">
+				<h3>About</h3>
+				<p>Welcome to inLineD</p>
+				<p>inLineD is a web application to help you create graphs which will help you when creating '' style graphs, just click on the intstrusction tab in order to learn how to start using this app or the team tab to learn about those who have worked on this style of graph</p>
+			</div>
+			<div class="tab-pane fade" id="instructions">
+				<h3>Instructions</h3>
+				<p>The instruction section.</p>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<div class="tab-pane fade" id="team">
+				<h3>Team</h3>
+				<p>The team sections</p>
+				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			</div>
+			<div class="tab-pane fade" id="svg">
+				<h3>SVG Download</h3>
+				<p>The SVG Download sections</p>
+				<p>Click on the button below to download the current graph as an SVG image file.</p>
+				<p><button class="btn btn-info" type="button">Download</button></p>
+			</div>
+		</div>
+	</div>
 
-<ul id="sortable">
-  <!--<img src"../img/#" alt="graph background"/> -->
- 
-</ul>
-<ul id="graph">
-	  
-</ul>
-       
+	<div class="footer">
+		<p>Footer</p>
+	</div>
 
-</div><!-- END Column-->
-
-    <div class="col-sm-4" >
-	
-	 <input type="text" id="name" value="" placeholder="Enter a tab value"/>
-	 <input type="number" id="data" value="" placeholder="Enter number of times data occurs"/>
-	 <select name="colour" id="colour">
-	  <option value="lightblue">Light Blue</option>
-	  <option value="green">Green</option>
-	  <option value="blue">Blue</option>
-	  <option value="red">Red</option>
-	  <option value="purple">Purple</option>
-	  <option value="orange">Orange</option>
-	  <option value="yellow">Yellow</option>
-	  <option value="brown">Brown</option>
-	</select>
-    <button type="submit" onClick="add_function()" class="btn btn-primary"> Add a new Item Tab </button>
-	</div><!-- END Column-->
-
-  </div><!-- END Row-->
-  </section><!-- END Section-->
-</div><!-- END CONTAINER-->
-
-
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li class="active tab-colour"><a data-toggle="tab" class="tab-header" href="#about">About</a></li>
-    <li class="tab-colour"><a data-toggle="tab" class="tab-header" href="#instructions">Instructions</a></li>
-    <li class="tab-colour"><a data-toggle="tab" class="tab-header" href="#team">Team</a></li>
-	<li class="tab-colour"><a data-toggle="tab" class="tab-header" href="#svg">SVG Download</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="about" class="tab-pane fade in active">
-      <h3>About</h3>
-      <p>Welcome to inLineD</p>
-	  <p>inLineD is a web application to help you create graphs which will help you when creating '' style graphs, just click on the intstrusction tab in order to learn how to start using this app or the team tab to learn about those who have worked on this style of graph</p>
-	  </div>
-    <div id="instructions" class="tab-pane fade">
-      <h3>Instructions</h3>
-	  <p>The instruction section.</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="team" class="tab-pane fade">
-      <h3>Team</h3>
-	  <p>The team sections</p>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-	<div id="svg" class="tab-pane fade">
-      <h3>SVG Download</h3>
-	  <p>The SVG Download sections</p>
-      <p>Click on the button below to download the current graph as an SVG image file.</p>
-	  <p><button type="button" class="btn btn-info">Download</button></p>
-    </div>
-  </div>
-</div>
-
-
-
-    <div class="footer">
-  <p>Footer</p>
-</div>
 </body>
 </html>
