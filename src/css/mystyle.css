@@ -40,7 +40,7 @@
 	margin-left: -1.3em;
 }
 #graph_ul{
-	width:70%;
+	width:auto;
 	list-style-type:none;
 	margin-right: 0;
 	padding: 0;
@@ -73,6 +73,7 @@ border-color:blue;
 .hr_length{
 	width:15px;
 	margin-right:2px;
+	float:left;
 }
 .d_and_d-style{
 	background-color: #a9a9a9 !important;
