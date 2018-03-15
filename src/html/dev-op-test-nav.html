@@ -12,37 +12,63 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
 
 	<script>
-	// A JS function to add in a new drag and drop tab
-	var x=0
-	var repeat=0
+	// Variable set up
+	var x=0;
+	var repeat=0;
+	// Creates intion options for what gets added to the second option list	
+    var option_list = [1,2];
+	   // for loop at thats option_list to intersect select tag
+	for (var i = 0; i < option_list.length; i++){
+	  var opt = option_list[i];
+	  var option = document.createElement("option");
+	  var select = document.getElementById("intersect");	  
+	  option.setAttribute("id", opt); //Adding ID to the option list
+	  option.setAttribute("class", "intersect-option"); // adds classes to option
+	  option.value(opt); // adds value to option list 
+	  select.appendChild(option); // Adds option to the list.
+	  
+	} 
+
+	
+	   // A JS function to add in a new drag and drop tab
+	   // function which adds new information in such as a new option for the adding bar
 	function add_function() {
 	   //variable list
 	   var name = document.getElementById("name").value; // gets the tabs name from the input feild
 	   var ul = document.getElementById("sortable"); // Selects the ui list
 	   var li = document.createElement("li"); // adds a new LI tag
 	   var graph_ul = document.getElementById("graph"); //Selects the graph UL
+	   
+	   
 	   //var graph_
 	   var graph_li = document.createElement("li"); // adds a new LI tag
 	   var h4 = document.createElement("h4"); // creates h4 tag for list names
 	   var hr = document.createElement("hr");// creats hr to display information in the graph
 	   var style = document.getElementById("colour").value // gets the users colour choice
-	   var repeat = document.getElementById("data").value // gets the value data for loop
-
+	   var repeat_info = document.getElementById("data").value // gets the value data for loop
+	   var option_add = document.getElementById("name").value // gets the intersect value
+	   
+	   
+       // appends information as needed
 	   li.appendChild(h4); // adds the h4 within the new item
 	   h4.appendChild(document.createTextNode(name)); // adds the text within the new item
 	   hr.setAttribute("id", style); // adds the custom colour to the hr tag
 	   hr.setAttribute("class", "hr_length"); // sets the hr length
 	   li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
-
+	   
 	   ul.appendChild(li); // is the command to add the item to the element
-	   for ( i = 0; i < repeat; i++){ // a for loop to input the users data as many times as is needed
+	   option_list.push(option_add)//adds the new id to the list
+	   
+	   for ( i = 0; i < repeat_info; i++){ // a for loop to input the users data as many times as is needed
 	   graph_li.appendChild(hr) // Appends the hr tag for the graph
 	   }
+	   
 	   graph_ul.appendChild(graph_li); // adds a new line to the graph
+	   
 
 	   x++; // increments the value of x
-	}
+	 }
 	</script>
 
 	<style>
@@ -85,7 +111,11 @@
 				</div>
         <!-- END Column-->
 				<div class="col-sm-4">
-					<input id="name" placeholder="Enter a tab value" type="text" value=""> <input id="data" placeholder="Enter number of times data occurs" type="number" value=""> <select id="colour" name="colour">
+				    
+					<input id="name" placeholder="Enter a tab value" type="text" value=""> 
+					<input id="data" placeholder="Enter number of times data occurs" type="number" value="">
+					<label> Add color to the new tab information </label>
+					<select id="colour" name="colour">
 						<option value="lightblue">
 							Light Blue
 						</option>
@@ -110,9 +140,14 @@
 						<option value="brown">
 							Brown
 						</option>
-					</select> <button class="btn btn-primary" onclick="add_function()" type="submit">Add a new Item Tab</button>
+					</select>
+
+				<label> Are there any current lines this connects with?</label>
+					<select id="intersect" name="intersect">
+
+					</select>
+					<button class="btn btn-primary" onclick="add_function()" type="submit">Add a new Item Tab</button>
 				</div>
-        <!-- END Column-->
 			</div>
       <!-- END Row-->
 		</section>
