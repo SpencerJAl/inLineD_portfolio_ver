@@ -16,23 +16,9 @@
 	var x=0;
 	var repeat=0;
 	// Creates intion options for what gets added to the second option list	
-    var option_list = [1,2];
-	   // for loop at thats option_list to intersect select tag
-	for (var i = 0; i < option_list.length; i++){
-	  var opt = option_list[i];
-	  var option = document.createElement("option");
-	  var select = document.getElementById("intersect");	  
-	  option.setAttribute("id", opt); //Adding ID to the option list
-	  option.setAttribute("class", "intersect-option"); // adds classes to option
-	  option.value(opt); // adds value to option list 
-	  select.appendChild(option); // Adds option to the list.
-	  
-	} 
-
-	
-	   // A JS function to add in a new drag and drop tab
-	   // function which adds new information in such as a new option for the adding bar
-	function add_function() {
+    var option_list = [];
+	// function which adds new information in such as a new option for the adding bar
+	function add_function(name) {
 	   //variable list
 	   var name = document.getElementById("name").value; // gets the tabs name from the input feild
 	   var ul = document.getElementById("sortable"); // Selects the ui list
@@ -58,7 +44,24 @@
 	   graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
 	   
 	   ul.appendChild(li); // is the command to add the item to the element
-	   option_list.push(option_add)//adds the new id to the list
+	   
+	   // Script which adds the newly added tags into the option list.
+	   var name_list = document.getElementById("name").value;
+	   option_list.push(name);
+	
+	  for (var i = 0; i < option_list.length; i++){
+	    var opt = option_list[i];
+	    var option = document.createElement("option");
+	    var select = document.getElementById("intersect");	  
+		var name_text = document.createTextNode(name_list);
+	    option.setAttribute("id", opt); //Adding ID to the option list
+	    option.setAttribute("class", "intersect-option"); // adds classes to option
+	    option.setAttribute("value", opt); // adds value to option list
+	    
+	} 
+	option.appendChild(name_text);
+	select.appendChild(option); // Adds option to the list.
+
 	   
 	   for ( i = 0; i < repeat_info; i++){ // a for loop to input the users data as many times as is needed
 	   graph_li.appendChild(hr) // Appends the hr tag for the graph
