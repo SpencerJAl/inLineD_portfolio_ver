@@ -46,6 +46,7 @@
 	padding: 0;
 	margin-left: auto;
 }
+
 #lightblue{
 	border-color:lightblue;
 }
@@ -72,7 +73,6 @@ border-color:blue;
 }
 .hr_length{
 	width:15px;
-	margin-right:2px;
 	float:left;
 }
 .d_and_d-style{
@@ -83,6 +83,7 @@ border-color:blue;
 .graph_li{
 	border: 2px white solid;
 	background-color:#ffffff;
+	list-style-type:none;
 	
 }
 .ui-draggable {

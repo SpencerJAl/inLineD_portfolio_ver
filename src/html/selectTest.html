@@ -2,31 +2,23 @@
 <html>
 <head>
 <script>
-var option_list = [];
-	function add_option(name){
-	var name = document.getElementById("name").value;
-	option_list.push(name);
-	
-	  for (var i = 0; i < option_list.length; i++){
-	    var opt = option_list[i];
-	    var option = document.createElement("option");
-	    var select = document.getElementById("select");	  
-		var name_text = document.createTextNode(name);
-	    option.setAttribute("id", opt); //Adding ID to the option list
-	    option.setAttribute("class", "intersect-option"); // adds classes to option
-	    option.setAttribute("value", opt); // adds value to option list
-	    
-	} 
-	option.appendChild(name_text);
-	select.appendChild(option); // Adds option to the list.
-}
+
+var style = 15;
+var margin = 1;
+var margin_total = style * margin;
+var hr = document.getElementById("hr");
+hr.setAttribute("style","margin-left:" + margin_total + "px;");
 </script>
+<style>
+hr{
+width:15px;
+color:green;
+}
+</style>
 </head>
 <body>
-<input type="text" id="name" value="">
-<input type="button" onclick="add_option()" value="add person">
-<select id="select">
-</select>
-
+<p>text</p>
+<hr id="hr">
+<p>text</p>
 </body>
 </html>

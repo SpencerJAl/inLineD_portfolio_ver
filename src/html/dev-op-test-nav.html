@@ -35,6 +35,17 @@
 	   var option_add = document.getElementById("name").value // gets the intersect value
 	   
 	   
+	   // adds in distance from side for HR tag
+	    var select_value = document.getElementById("intersect").value;
+	    var margin_hr = 5;
+	    var ul_number = ul.childNodes.length;
+	    var margin_total = ul_number * margin_hr;
+		if (ul_number == 0){
+	    hr.setAttribute("style", "margin-left:0;");
+		}else{
+		hr.setAttribute("style", "margin-left:" + margin_total + "px;");
+		}
+		
        // appends information as needed
 	   li.appendChild(h4); // adds the h4 within the new item
 	   h4.appendChild(document.createTextNode(name)); // adds the text within the new item
@@ -57,18 +68,22 @@
 	    option.setAttribute("id", opt); //Adding ID to the option list
 	    option.setAttribute("class", "intersect-option"); // adds classes to option
 	    option.setAttribute("value", opt); // adds value to option list
+		
+	    option.setAttribute("style", "list-style-type:none;"); // adds value to option list
 	    
 	} 
-	option.appendChild(name_text);
+	option.appendChild(name_text);// adds option name
 	select.appendChild(option); // Adds option to the list.
+	
 
-	   
-	   for ( i = 0; i < repeat_info; i++){ // a for loop to input the users data as many times as is needed
-	   graph_li.appendChild(hr) // Appends the hr tag for the graph
-	   }
-	   
+	graph_li.appendChild(hr);
+		   
+	   if(select_value == 'None'){
 	   graph_ul.appendChild(graph_li); // adds a new line to the graph
-	   
+	   }else{
+	   graph_li.appendChild(select_value); // Add in the additional info
+	   graph_ul.appendChild(graph_li); // adds a new line to the graph
+	   }
 
 	   x++; // increments the value of x
 	 }
@@ -147,7 +162,7 @@
 
 				<label> Are there any current lines this connects with?</label>
 					<select id="intersect" name="intersect">
-
+                      <option id="None" value="None">None</option>
 					</select>
 					<button class="btn btn-primary" onclick="add_function()" type="submit">Add a new Item Tab</button>
 				</div>
