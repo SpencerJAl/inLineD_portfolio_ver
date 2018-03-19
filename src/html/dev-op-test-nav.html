@@ -49,10 +49,11 @@
        // appends information as needed
 	   li.appendChild(h4); // adds the h4 within the new item
 	   h4.appendChild(document.createTextNode(name)); // adds the text within the new item
-	   hr.setAttribute("id", style); // adds the custom colour to the hr tag
-	   hr.setAttribute("class", "hr_length"); // sets the hr length
+	   hr.setAttribute("id",style /*"hr_" + x*/); // adds the custom colour to the hr tag
+	   hr.setAttribute("class", "hr_length"); // sets the hr 
 	   li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
+	   graph_li.setAttribute("id", "li" + option_add);
 	   
 	   ul.appendChild(li); // is the command to add the item to the element
 	   
@@ -74,14 +75,20 @@
 	} 
 	option.appendChild(name_text);// adds option name
 	select.appendChild(option); // Adds option to the list.
-	
-
-	graph_li.appendChild(hr);
 		   
 	   if(select_value == 'None'){
+	   graph_li.appendChild(hr);
 	   graph_ul.appendChild(graph_li); // adds a new line to the graph
 	   }else{
-	   graph_li.appendChild(select_value); // Add in the additional info
+	   var select_name = select.value;
+	   var left_li = document.getElementById("li" + select_name);
+	   var hr_dup = createElement("hr");
+	   hr_dup.setAttribute("style", "margin-left:" + margin_total + "px;");
+	   hr_dup.setAttribute("class", hr_length);
+	   
+	   
+	   //graph_li.appendChild(left_li); // Add in the additional info
+       graph_li.appendChild(hr);
 	   graph_ul.appendChild(graph_li); // adds a new line to the graph
 	   }
 
