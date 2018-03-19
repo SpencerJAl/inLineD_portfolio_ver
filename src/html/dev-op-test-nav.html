@@ -33,6 +33,7 @@
 	   var style = document.getElementById("colour").value // gets the users colour choice
 	   var repeat_info = document.getElementById("data").value // gets the value data for loop
 	   var option_add = document.getElementById("name").value // gets the intersect value
+	   var hr_x = "hr_"+x;
 	   
 	   
 	   // adds in distance from side for HR tag
@@ -49,8 +50,8 @@
        // appends information as needed
 	   li.appendChild(h4); // adds the h4 within the new item
 	   h4.appendChild(document.createTextNode(name)); // adds the text within the new item
-	   hr.setAttribute("id",style /*"hr_" + x*/); // adds the custom colour to the hr tag
-	   hr.setAttribute("class", "hr_length"); // sets the hr 
+	   hr.setAttribute("id",hr_x); // adds the custom colour to the hr tag
+	   hr.setAttribute("class", "hr_length" + " " +style); // sets the hr 
 	   li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("id", "li" + option_add);

@@ -47,28 +47,28 @@
 	margin-left: auto;
 }
 
-#lightblue{
+.lightblue{
 	border-color:lightblue;
 }
-#green{
+.green{
 	border-color:green;
 }
-#blue{
+.blue{
 border-color:blue;	
 }
-#red{
+.red{
 	border-color:red;
 }
-#yellow{
+.yellow{
 	border-color:yellow;
 }
-#purple{
+.purple{
 	border-color:purple;
 }
-#brown{
+.brown{
 	border-color:brown;
 }
-#orange{
+.orange{
 	border-color:orange;
 }
 .hr_length{
