@@ -42,7 +42,7 @@
 	    var ul_number = ul.childNodes.length;
 	    var margin_total = ul_number * margin_hr;
 		if (ul_number == 0){
-	    hr.setAttribute("style", "margin-left:0;");
+	    hr.setAttribute("style", "margin-left:0px;");
 		}else{
 		hr.setAttribute("style", "margin-left:" + margin_total + "px;");
 		}
@@ -51,7 +51,7 @@
 	   li.appendChild(h4); // adds the h4 within the new item
 	   h4.appendChild(document.createTextNode(name)); // adds the text within the new item
 	   hr.setAttribute("id",hr_x); // adds the custom colour to the hr tag
-	   hr.setAttribute("class", "hr_length" + " " +style); // sets the hr 
+	   hr.setAttribute("class", "hr_length" + " " +style + " " +name); // sets the hr 
 	   li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("id", "li" + option_add);
@@ -81,14 +81,22 @@
 	   graph_li.appendChild(hr);
 	   graph_ul.appendChild(graph_li); // adds a new line to the graph
 	   }else{
-	   var select_name = select.value;
-	   var left_li = document.getElementById("li" + select_name);
-	   var hr_dup = createElement("hr");
-	   hr_dup.setAttribute("style", "margin-left:" + margin_total + "px;");
-	   hr_dup.setAttribute("class", hr_length);
+	   var select_name = option_add.value;
+	   var hr_dup = document.createElement("hr");
 	   
+	   //gets the orginal hr
+	   var left_li = document.getElementsByClass(select_name);
+	   // selects the child of selected element ( the hr tag within the li tag) and then gets the class tags
+	   var hr_check = document.getElementsByTagName((left_li).childNode)[0].getAttribute("class");
+	   // apply the classes to the duplicate classes
+	   var style_dup = hr_check.attributes[1].value;
+	   
+	   
+	   hr_dup.setAttribute("style", "margin-left:" + margin_total + "px;");
+	   hr_dup.setAttribute("class",hr_check + " "+ select_name);   
 	   
 	   //graph_li.appendChild(left_li); // Add in the additional info
+	   left_li.appendChild(hr_dup);
        graph_li.appendChild(hr);
 	   graph_ul.appendChild(graph_li); // adds a new line to the graph
 	   }
