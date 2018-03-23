@@ -15,7 +15,7 @@
 	// Variable set up
 	var x=0;
 	var repeat=0;
-	// Creates intion options for what gets added to the second option list	
+	// Creates intion options for what gets added to the second option list
     var option_list = [];
 	// function which adds new information in such as a new option for the adding bar
 	function add_function(name) {
@@ -24,8 +24,8 @@
 	   var ul = document.getElementById("sortable"); // Selects the ui list
 	   var li = document.createElement("li"); // adds a new LI tag
 	   var graph_ul = document.getElementById("graph"); //Selects the graph UL
-	   
-	   
+
+
 	   //var graph_
 	   var graph_li = document.createElement("li"); // adds a new LI tag
 	   var h4 = document.createElement("h4"); // creates h4 tag for list names
@@ -35,7 +35,7 @@
 	   var option_add = document.getElementById("name").value // gets the intersect value
 	   var hr_x = "hr_"+x;
 	   var li_x = "li_"+x;
-	   
+
 	   // adds in distance from side for HR tag
 	    var select_value = document.getElementById("intersect").value;
 	    var margin_hr = 5;
@@ -46,57 +46,64 @@
 		}else{
 		hr.setAttribute("style", "margin-left:" + margin_total + "px;");
 		}
-		
+
        // appends information as needed
 	   li.appendChild(h4); // adds the h4 within the new item
 	   h4.appendChild(document.createTextNode(name)); // adds the text within the new item
 	   hr.setAttribute("id","hr_"+name); // adds the custom colour to the hr tag
-	   hr.setAttribute("class", "hr_length" + " " +style +" "+name); // sets the hr 
+	   hr.setAttribute("class", "hr_length" + " " +style +" "+name); // sets the hr
+		 //Button variable set up
+		 var removeButton = document.createElement('button');
+		 //button added is added NOT CORRENT
+		 removeButton.appendChild(document.createTextNode("remove"));
+		// removeButton.setAttribute('onClick','removeLine(""class", "d_and_d-style y-axis" + x")');
+		 // //Following line adds remove button
+		 h4.appendChild(removeButton);
 	   li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
 	   graph_li.setAttribute("id", li_x); // adds the styling class to it
-	   
+
 	   ul.appendChild(li); // is the command to add the item to the element
-	   
+
 	   // Script which adds the newly added tags into the option list.
 	   var name_list = document.getElementById("name").value;
 	   option_list.push(name);
-	
+
 	  for (var i = 0; i < option_list.length; i++){
 	    var opt = option_list[i];
 	    var option = document.createElement("option");
-	    var select = document.getElementById("intersect");	  
+	    var select = document.getElementById("intersect");
 		var name_text = document.createTextNode(name_list);
 	    option.setAttribute("id", opt); //Adding ID to the option list
 	    option.setAttribute("class", "intersect-option"); // adds classes to option
 	    option.setAttribute("value", opt); // adds value to option list
-		
+
 	    option.setAttribute("style", "list-style-type:none;"); // adds value to option list
-	    
-	} 
+
+	}
 	option.appendChild(name_text);// adds option name
 	select.appendChild(option); // Adds option to the list.
-		   
+
 	   if(select_value == 'None'){
 	   graph_li.appendChild(hr);
 	   graph_ul.appendChild(graph_li); // adds a new line to the graph
 	   }else{
 	   var hr_dup = document.createElement("hr");
-	   
+
 	   //gets the orginal hr
 	   var left_li = document.getElementById("intersect").value;
 	   alert(left_li);
 	   // selects the child of selected element ( the hr tag within the li tag) and then gets the class tags
 	   var hr_check = document.getElementById("hr_"+left_li).getAttribute("class");
-	   
+
 	   // apply the classes to the duplicate classes
 	   //var style_dup = hr_check.attributes[1].value;
-	   
-	   
+
+
 	   hr_dup.setAttribute("style", "margin-left:" + margin_total + "px;");
-	   hr_dup.setAttribute("class",hr_check);   
-	   
-	   
+	   hr_dup.setAttribute("class",hr_check);
+
+
 	   var append_dup = document.getElementById("hr_"+left_li).parentNode;
 	   alert(append_dup.nodeName);
 	   //graph_li.appendChild(left_li); // Add in the additional info
@@ -107,6 +114,13 @@
 
 	   x++; // increments the value of x
 	 }
+	 //Remove function that is supposed to remove a list item
+	 //NOT WORKING YET
+	 function removeLine(itemid){
+    var item = document.getElementByClassName(itemid);
+    list.removeChild(item);
+		}
+
 	</script>
 
 	<style>
@@ -149,8 +163,8 @@
 				</div>
         <!-- END Column-->
 				<div class="col-sm-4">
-				    
-					<input id="name" placeholder="Enter a tab value" type="text" value=""> 
+
+					<input id="name" placeholder="Enter a tab value" type="text" value="">
 					<input id="data" placeholder="Enter number of times data occurs" type="number" value="">
 					<label> Add color to the new tab information </label>
 					<select id="colour" name="colour">
