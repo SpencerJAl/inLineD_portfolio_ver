@@ -28,9 +28,8 @@
 }
 
 #sortable li {
-	margin: 0 3px 3px 3px;
-	padding: 0.4em;
-	padding-left: 1.5em;
+	
+	
 	font-size: 1.4em;
 	height: 18px;
 }
@@ -39,12 +38,12 @@
 	position: absolute;
 	margin-left: -1.3em;
 }
-#graph_ul{
-	width:auto;
+#graph{
 	list-style-type:none;
 	margin-right: 0;
 	padding: 0;
 	margin-left: auto;
+	background-color:#ffffff;
 }
 
 .lightblue{
@@ -73,7 +72,6 @@ border-color:blue;
 }
 .hr_length{
 	width:15px;
-	float:left;
 }
 .d_and_d-style{
 	background-color: #a9a9a9 !important;
@@ -81,9 +79,10 @@ border-color:blue;
 }
 
 .graph_li{
-	border: 2px white solid;
 	background-color:#ffffff;
-	list-style-type:none;
+	
+	padding-left:0;
+	margin-left:0;
 	
 }
 .ui-draggable {

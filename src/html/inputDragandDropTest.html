@@ -1,0 +1,102 @@
+<!DOCTYPE>
+<html>
+<head>
+<script>
+ function add_text(){
+ var input1 = document.getElementById("input1").value;
+ var input2 = document.getElementById("input2").value;
+ var li = document.createElement("li");
+ var li2 = document.createElement("li");
+ var h4 = document.createTextNode(input1);
+ var h2 = document.createTextNode(input2);
+ var x = document.getElementById("sortable");
+ var y = document.getElementById("list");
+ li.appendChild(h4);
+ li2.appendChild(h2);
+ y.appendChild(li2);
+ x.appendChild(li);
+ 
+ }
+</script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+var indexBefore = -1;
+
+function getIndex(itm, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (itm[0] === list[i]) break;
+    }
+    return i >= list.length ? -1 : i;
+}
+
+$('#sortable').sortable({
+    start: function(event, ui) {
+        indexBefore = getIndex(ui.item, $('#sortable'));
+    },
+    change: function(event, ui) {
+        var indexAfter = getIndex(ui.item,$("#sortable")); 
+    },
+   stop: function(event, ui) {
+       var indexAfter = getIndex(ui.item,$("#sortable")); 
+       if (indexBefore==indexAfter) return;
+       if (indexBefore<indexAfter) {
+           $($("#list li")[indexBefore]).insertAfter(
+               $($("#list li")[indexAfter]));
+       }
+       else {
+           $($("#list li")[indexBefore]).insertBefore(
+               $($("#list li")[indexAfter]));
+       }
+   }
+});
+
+$('#list').sortable({
+    start: function(event, ui) {
+        indexBefore = getIndex(ui.item, $('#list li'));
+    },
+    change: function(event, ui) {
+        var indexAfter = getIndex(ui.item,$("#list li")); 
+    },
+   stop: function(event, ui) {
+       var indexAfter = getIndex(ui.item,$("#list li")); 
+       if (indexBefore==indexAfter) return;
+       if (indexBefore<indexAfter) {
+           $($("#sortable li")[indexBefore]).insertAfter(
+               $($("#sortable li")[indexAfter]));
+       }
+       else {
+           $($("#sortable li")[indexBefore]).insertBefore(
+               $($("#sortable li")[indexAfter]));
+       }
+   }
+});
+</script>
+<style>
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#sortable li span { position: absolute; margin-left: -1.3em; }
+#list { list-style-type: none; margin: 0; padding: 0; width: 25%; }
+#list li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#list li span { position: absolute; margin-left: -1.3em; }
+</style>
+</head>
+<body>
+<div id="1">
+ <div id="1.5">
+   <ul id="sortable" class="sort-list-ul">
+    
+   </ul>
+   <ul id="list" class=" sort-list-ul-no-drag">
+   
+   </ul>
+ </div>
+ <div id="1.75">
+ <input type="text" id="input1">
+ <input type="text" id="input2">
+ <input type="submit" onclick="add_text()" value="Add text">
+ </div>
+</div>
+</body>
+</html>

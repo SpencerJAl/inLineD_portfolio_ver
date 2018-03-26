@@ -9,7 +9,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"><!-- Optional theme -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
 
-	<script>
+	 <script>
 	   // Variable set up
 	   var x=0;
 	   var repeat=0;
@@ -33,10 +33,11 @@
 	      var option_add = document.getElementById("name").value // gets the intersect value
 	      var hr_x = "hr_"+x;
 	      var li_x = "li_"+x;
+		  var br = document.createElement("br");
 
 	      // adds in distance from side for HR tag
 	       var select_value = document.getElementById("intersect").value;
-	       var margin_hr = 5;
+	       var margin_hr = 15;
 	       var ul_number = ul.childNodes.length;
 	       var margin_total = ul_number * margin_hr;
 	       if (ul_number == 0){
@@ -47,13 +48,16 @@
 
 	      // appends information as needed
 	      li.appendChild(h4); // adds the h4 within the new item
+		  graph_li.setAttribute("style","margin-left:0; !important");
 	      h4.appendChild(document.createTextNode(name)); // adds the text within the new item
 	      hr.setAttribute("id","hr_"+name); // adds the custom colour to the hr tag
 	      hr.setAttribute("class", "hr_length" + " " +style +" "+name); // sets the hr
 	        //Button variable set up
 	        var removeButton = document.createElement('button');
+			var glyphicon = document.createElement("span");
+			glyphicon.setAttribute("class","glyphicon glyphicon-remove-sign");
 	        //button added is added NOT CORRENT
-	        removeButton.appendChild(document.createTextNode("remove"));
+	        removeButton.appendChild(glyphicon);
 	       // removeButton.setAttribute('onClick','removeLine(""class", "d_and_d-style y-axis" + x")');
 	        // //Following line adds remove button
 	        h4.appendChild(removeButton);
@@ -84,12 +88,14 @@
 	      if(select_value == 'None'){
 	      graph_li.appendChild(hr);
 	      graph_ul.appendChild(graph_li); // adds a new line to the graph
+		  
 	      }else{
+		  
 	      var hr_dup = document.createElement("hr");
 
 	      //gets the orginal hr
 	      var left_li = document.getElementById("intersect").value;
-	      alert(left_li);
+	      
 	      // selects the child of selected element ( the hr tag within the li tag) and then gets the class tags
 	      var hr_check = document.getElementById("hr_"+left_li).getAttribute("class");
 
@@ -102,15 +108,18 @@
 
 
 	      var append_dup = document.getElementById("hr_"+left_li).parentNode;
-	      alert(append_dup.nodeName);
+		  
 	      //graph_li.appendChild(left_li); // Add in the additional info
+		  //append_dup.removeChild(br);
 	      append_dup.appendChild(hr_dup);
+		  //append_dup.appendChild(br);
 	      graph_li.appendChild(hr);
 	      graph_ul.appendChild(graph_li); // adds a new line to the graph
 	      }
 
 	      x++; // increments the value of x
 	    }
+		
 	    //Remove function that is supposed to remove a list item
 	    //NOT WORKING YET
 	    function removeLine(itemid){
@@ -121,16 +130,75 @@
 
 	<style>
 	    #sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
-	    #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+	    #sortable li {font-size: 1.4em;  }
 	    #sortable li span { position: absolute; margin-left: -1.3em; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
-	    $( function() {
-	      $( "#sortable" ).sortable();
-	      $( "#sortable" ).disableSelection();
-	    } );
+var indexBefore = -1;
+
+function getIndex(itm, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (itm[0] === list[i]) break;
+    }
+    return i >= list.length ? -1 : i;
+}
+
+
+// The one i want for sortable.
+
+$('#sortable').sortable({
+    start: function(event, ui) {
+        indexBefore = getIndex(ui.item, $('#sortable li'));
+    },
+    change: function(event, ui) {
+        var indexAfter = getIndex(ui.item,$("#sortable li")); 
+    },
+   stop: function(event, ui) {
+       var indexAfter = getIndex(ui.item,$("#sortable li")); 
+       if (indexBefore==indexAfter) return;
+       if (indexBefore<indexAfter) {
+           $($("#list li")[indexBefore]).insertAfter(
+               $($("#list li")[indexAfter]));
+       }
+       else {
+           $($("#list li")[indexBefore]).insertBefore(
+               $($("#list li")[indexAfter]));
+       }
+   }
+});
+
+ $('#graph').sortable({
+    start: function(event, ui) {
+        indexBefore = getIndex(ui.item, $('#graph'));
+    },
+    change: function(event, ui) {
+        var indexAfter = getIndex(ui.item,$("#graph")); 
+    },
+   stop: function(event, ui) {
+       var indexAfter = getIndex(ui.item,$("#graph")); 
+       if (indexBefore==indexAfter) return;
+       if (indexBefore<indexAfter) {
+           $($("#sortable li")[indexBefore]).insertAfter(
+               $($("#sortable li")[indexAfter]));
+       }
+       else {
+           $($("#sortable li")[indexBefore]).insertBefore(
+               $($("#sortable li")[indexAfter]));
+       }
+   }
+});
+</script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js">
+	</script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
+	</script>
+	<script src="../js/sortable.js">
+	</script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
 	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -155,16 +223,20 @@
 	<div class="container" id="dataContainer">
 		<section>
 			<div class="row">
-				<div class="col-sm-8">
+				
+				  <div class="col-sm-3">
 					<ul id="sortable">
 						<!--<img src"../img/#" alt="graph background"/> -->
 					</ul>
+					</div>
+					<div class="col-sm-6">
 					<ul id="graph"></ul>
-				</div>
+					</div>
+				
 				<!-- END Column-->
 
 				<!-- Graph Options -->
-				<div class="col-sm-4">
+				<div class="col-sm-3">
 					<input id="name" placeholder="Enter a tab value" type="text" value="">
 					<input id="data" placeholder="Enter number of times data occurs" type="number" value="">
 					<label>Add color to new tab information</label>
