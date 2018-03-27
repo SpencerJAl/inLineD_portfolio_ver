@@ -3,22 +3,20 @@
 <head>
 <script>
 
-var style = 15;
-var margin = 1;
-var margin_total = style * margin;
-var hr = document.getElementById("hr");
-hr.setAttribute("style","margin-left:" + margin_total + "px;");
-</script>
-<style>
-hr{
-width:15px;
-color:green;
+function removeSpan(){
+var li = documnet.getElementById("li_test");
+li.removeChild();
 }
-</style>
+</script>
+
 </head>
 <body>
-<p>text</p>
-<hr id="hr">
-<p>text</p>
+<ul>
+<li>1</li>
+<li>2</li>
+<li id="li_test">3 <span style="clear:both;"></span></li>
+<li>4</li>
+<button onclick="removeSpan()">Remove</button>
+</ul>
 </body>
 </html>

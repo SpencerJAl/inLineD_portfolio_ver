@@ -20,58 +20,7 @@
 </script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-var indexBefore = -1;
-
-function getIndex(itm, list) {
-    var i;
-    for (i = 0; i < list.length; i++) {
-        if (itm[0] === list[i]) break;
-    }
-    return i >= list.length ? -1 : i;
-}
-
-$('#sortable').sortable({
-    start: function(event, ui) {
-        indexBefore = getIndex(ui.item, $('#sortable'));
-    },
-    change: function(event, ui) {
-        var indexAfter = getIndex(ui.item,$("#sortable")); 
-    },
-   stop: function(event, ui) {
-       var indexAfter = getIndex(ui.item,$("#sortable")); 
-       if (indexBefore==indexAfter) return;
-       if (indexBefore<indexAfter) {
-           $($("#list li")[indexBefore]).insertAfter(
-               $($("#list li")[indexAfter]));
-       }
-       else {
-           $($("#list li")[indexBefore]).insertBefore(
-               $($("#list li")[indexAfter]));
-       }
-   }
-});
-
-$('#list').sortable({
-    start: function(event, ui) {
-        indexBefore = getIndex(ui.item, $('#list li'));
-    },
-    change: function(event, ui) {
-        var indexAfter = getIndex(ui.item,$("#list li")); 
-    },
-   stop: function(event, ui) {
-       var indexAfter = getIndex(ui.item,$("#list li")); 
-       if (indexBefore==indexAfter) return;
-       if (indexBefore<indexAfter) {
-           $($("#sortable li")[indexBefore]).insertAfter(
-               $($("#sortable li")[indexAfter]));
-       }
-       else {
-           $($("#sortable li")[indexBefore]).insertBefore(
-               $($("#sortable li")[indexAfter]));
-       }
-   }
-});
+<script src="../js/sortable.js">
 </script>
 <style>
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
@@ -88,9 +37,12 @@ $('#list').sortable({
    <ul id="sortable" class="sort-list-ul">
     
    </ul>
+   </div>
+   <div id="1.8">
    <ul id="list" class=" sort-list-ul-no-drag">
    
    </ul>
+   </div>
  </div>
  <div id="1.75">
  <input type="text" id="input1">

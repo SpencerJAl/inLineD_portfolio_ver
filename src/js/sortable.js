@@ -1,3 +1,4 @@
+$(document).ready(function() {
 var indexBefore = -1;
 
 function getIndex(itm, list) {
@@ -22,12 +23,12 @@ $('#sortable').sortable({
        var indexAfter = getIndex(ui.item,$("#sortable li")); 
        if (indexBefore==indexAfter) return;
        if (indexBefore<indexAfter) {
-           $($("#list li")[indexBefore]).insertAfter(
-               $($("#list li")[indexAfter]));
+           $($("#graph li")[indexBefore]).insertAfter(
+               $($("#graph li")[indexAfter]));
        }
        else {
-           $($("#list li")[indexBefore]).insertBefore(
-               $($("#list li")[indexAfter]));
+           $($("#graph li")[indexBefore]).insertBefore(
+               $($("#graph li")[indexAfter]));
        }
    }
 });
@@ -51,4 +52,5 @@ $('#sortable').sortable({
                $($("#sortable li")[indexAfter]));
        }
    }
+});
 });
