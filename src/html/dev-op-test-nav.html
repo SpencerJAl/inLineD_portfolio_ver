@@ -1,151 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<title>inLineD</title>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
+
+	<!-- Link CSS/Bootstrap -->
 	<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Roboto" rel="stylesheet">
-	<link href="../css/mystyle.css" rel="stylesheet" type="text/css"><!-- Latest compiled and minified CSS -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"><!-- Optional theme -->
+	<link href="../css/mystyle.css" rel="stylesheet" type="text/css">
+
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Optional theme -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
 
-	 <script>
-	   // Variable set up
-	   var x=0;
-	   var repeat=0;
-	   // Creates intion options for what gets added to the second option list
-	   var option_list = [];
-	   // function which adds new information in such as a new option for the adding bar
-	   function add_function(name) {
-	      //variable list
-	      var name = document.getElementById("name").value; // gets the tabs name from the input feild
-	      var ul = document.getElementById("sortable"); // Selects the ui list
-	      var li = document.createElement("li"); // adds a new LI tag
-	      var graph_ul = document.getElementById("graph"); //Selects the graph UL
+	<!-- JS -->
+	<script>
+	      // Variable set up
+	      var x=0;
+	      var repeat=0;
+	      // Creates intion options for what gets added to the second option list
+	      var option_list = [];
+	      // function which adds new information in such as a new option for the adding bar
+	      function add_function(name) {
+	         //variable list
+	         var name = document.getElementById("name").value; // gets the tabs name from the input feild
+	         var ul = document.getElementById("sortable"); // Selects the ui list
+	         var li = document.createElement("li"); // adds a new LI tag
+	         var graph_ul = document.getElementById("graph"); //Selects the graph UL
 
 
-	      //var graph_
-	      var graph_li = document.createElement("li"); // adds a new LI tag
-	      var h4 = document.createElement("h4"); // creates h4 tag for list names
-	      var hr = document.createElement("hr");// creats hr to display information in the graph
-	      var style = document.getElementById("colour").value // gets the users colour choice
-	      var repeat_info = document.getElementById("data").value // gets the value data for loop
-	      var option_add = document.getElementById("name").value // gets the intersect value
-	      var hr_x = "hr_"+x;
-	      var li_x = "li_"+x;
-		  var br = document.createElement("br");
+	         //var graph_
+	         var graph_li = document.createElement("li"); // adds a new LI tag
+	         var h4 = document.createElement("h4"); // creates h4 tag for list names
+	         var hr = document.createElement("hr");// creats hr to display information in the graph
+	         var style = document.getElementById("colour").value // gets the users colour choice
+	         var repeat_info = document.getElementById("data").value // gets the value data for loop
+	         var option_add = document.getElementById("name").value // gets the intersect value
+	         var hr_x = "hr_"+x;
+	         var li_x = "li_"+x;
+	         var br = document.createElement("br");
 
-	      // adds in distance from side for HR tag
-	       var select_value = document.getElementById("intersect").value;
-	       var margin_hr = 15;
-	       var ul_number = ul.childNodes.length;
-	       var margin_total = ul_number * margin_hr;
-	       if (ul_number == 0){
-	       hr.setAttribute("style", "margin-left:0px;");
-	       }else{
-	       hr.setAttribute("style", "margin-left:" + margin_total + "px;");
-	       }
+	         // adds in distance from side for HR tag
+	          var select_value = document.getElementById("intersect").value;
+	          var margin_hr = 15;
+	          var ul_number = ul.childNodes.length;
+	          var margin_total = ul_number * margin_hr;
+	          if (ul_number == 0){
+	          hr.setAttribute("style", "margin-left:0px;");
+	          }else{
+	          hr.setAttribute("style", "margin-left:" + margin_total + "px;");
+	          }
 
-	      // appends information as needed
-	      li.appendChild(h4); // adds the h4 within the new item
-		  graph_li.setAttribute("style","margin-left:0; !important");
-	      h4.appendChild(document.createTextNode(name)); // adds the text within the new item
-	      hr.setAttribute("id","hr_"+name); // adds the custom colour to the hr tag
-	      hr.setAttribute("class", "hr_length" + " " +style +" "+name); // sets the hr
-	        //Button variable set up
-	        var removeButton = document.createElement('button');
-			var glyphicon = document.createElement("span");
-			glyphicon.setAttribute("class","glyphicon glyphicon-remove-sign");
-	        //button added is added NOT CORRENT
-	        removeButton.appendChild(glyphicon);
-	       // removeButton.setAttribute('onClick','removeLine(""class", "d_and_d-style y-axis" + x")');
-	        // //Following line adds remove button
-	        h4.appendChild(removeButton);
-	      li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
-	      graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
-	      graph_li.setAttribute("id", li_x); // adds the styling class to it
+	         // appends information as needed
+	         li.appendChild(h4); // adds the h4 within the new item
+	         graph_li.setAttribute("style","margin-left:0; !important");
+	         h4.appendChild(document.createTextNode(name)); // adds the text within the new item
+	         hr.setAttribute("id","hr_"+name); // adds the custom colour to the hr tag
+	         hr.setAttribute("class", "hr_length" + " " +style +" "+name); // sets the hr
+	           //Button variable set up
+	           var removeButton = document.createElement('button');
+	           var glyphicon = document.createElement("span");
+	           glyphicon.setAttribute("class","glyphicon glyphicon-remove-sign");
+	           //button added is added NOT CORRENT
+	           removeButton.appendChild(glyphicon);
+	          // removeButton.setAttribute('onClick','removeLine(""class", "d_and_d-style y-axis" + x")');
+	           // //Following line adds remove button
+	           h4.appendChild(removeButton);
+	         li.setAttribute("class", "d_and_d-style y-axis" + x); // adds the styling class to it
+	         graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
+	         graph_li.setAttribute("id", li_x); // adds the styling class to it
 
-	      ul.appendChild(li); // is the command to add the item to the element
+	         ul.appendChild(li); // is the command to add the item to the element
 
-	      // Script which adds the newly added tags into the option list.
-	      var name_list = document.getElementById("name").value;
-	      option_list.push(name);
+	         // Script which adds the newly added tags into the option list.
+	         var name_list = document.getElementById("name").value;
+	         option_list.push(name);
 
-	     for (var i = 0; i < option_list.length; i++){
-	       var opt = option_list[i];
-	       var option = document.createElement("option");
-	       var select = document.getElementById("intersect");
-	       var name_text = document.createTextNode(name_list);
-	       option.setAttribute("id", opt); //Adding ID to the option list
-	       option.setAttribute("class", "intersect-option"); // adds classes to option
-	       option.setAttribute("value", opt); // adds value to option list
+	        for (var i = 0; i < option_list.length; i++){
+	          var opt = option_list[i];
+	          var option = document.createElement("option");
+	          var select = document.getElementById("intersect");
+	          var name_text = document.createTextNode(name_list);
+	          option.setAttribute("id", opt); //Adding ID to the option list
+	          option.setAttribute("class", "intersect-option"); // adds classes to option
+	          option.setAttribute("value", opt); // adds value to option list
 
-	       option.setAttribute("style", "list-style-type:none;"); // adds value to option list
-	   }
-	   option.appendChild(name_text);// adds option name
-	   select.appendChild(option); // Adds option to the list.
-
-	      if(select_value == 'None'){
-	      graph_li.appendChild(hr);
-	      graph_ul.appendChild(graph_li); // adds a new line to the graph
-		  
-	      }else{
-		  
-	      var hr_dup = document.createElement("hr");
-
-	      //gets the orginal hr
-	      var left_li = document.getElementById("intersect").value;
-	      
-	      // selects the child of selected element ( the hr tag within the li tag) and then gets the class tags
-	      var hr_check = document.getElementById("hr_"+left_li).getAttribute("class");
-
-	      // apply the classes to the duplicate classes
-	      //var style_dup = hr_check.attributes[1].value;
-
-
-	      hr_dup.setAttribute("style", "margin-left:" + margin_total + "px;");
-	      hr_dup.setAttribute("class",hr_check);
-
-
-	      var append_dup = document.getElementById("hr_"+left_li).parentNode;
-		  
-	      //graph_li.appendChild(left_li); // Add in the additional info
-		  //append_dup.removeChild(br);
-	      append_dup.appendChild(hr_dup);
-		  //append_dup.appendChild(br);
-	      graph_li.appendChild(hr);
-	      graph_ul.appendChild(graph_li); // adds a new line to the graph
+	          option.setAttribute("style", "list-style-type:none;"); // adds value to option list
 	      }
+	      option.appendChild(name_text);// adds option name
+	      select.appendChild(option); // Adds option to the list.
 
-	      x++; // increments the value of x
-	    }
-		
-	    //Remove function that is supposed to remove a list item
-	    //NOT WORKING YET
-	    function removeLine(itemid){
-	   var item = document.getElementByClassName(itemid);
-	   list.removeChild(item);
+	         if(select_value == 'None'){
+	         graph_li.appendChild(hr);
+	         graph_ul.appendChild(graph_li); // adds a new line to the graph
+
+	         }else{
+
+	         var hr_dup = document.createElement("hr");
+
+	         //gets the orginal hr
+	         var left_li = document.getElementById("intersect").value;
+
+	         // selects the child of selected element ( the hr tag within the li tag) and then gets the class tags
+	         var hr_check = document.getElementById("hr_"+left_li).getAttribute("class");
+
+	         // apply the classes to the duplicate classes
+	         //var style_dup = hr_check.attributes[1].value;
+
+
+	         hr_dup.setAttribute("style", "margin-left:" + margin_total + "px;");
+	         hr_dup.setAttribute("class",hr_check);
+
+
+	         var append_dup = document.getElementById("hr_"+left_li).parentNode;
+
+	         //graph_li.appendChild(left_li); // Add in the additional info
+	           //append_dup.removeChild(br);
+	         append_dup.appendChild(hr_dup);
+	           //append_dup.appendChild(br);
+	         graph_li.appendChild(hr);
+	         graph_ul.appendChild(graph_li); // adds a new line to the graph
+	         }
+
+	         x++; // increments the value of x
 	       }
-	</script>
 
+	       //Remove function that is supposed to remove a list item
+	       //NOT WORKING YET
+	       function removeLine(itemid){
+	      var item = document.getElementByClassName(itemid);
+	      list.removeChild(item);
+	          }
+	</script>
+	<!-- END JS -->
+
+	<!-- CSS, maybe put in external file? -->
 	<style>
-	    #sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
-	    #sortable li {font-size: 1.4em;  }
-	    #sortable li span { position: absolute; margin-left: -1.3em; }
+	       #sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
+	       #sortable li {font-size: 1.4em;  }
+	       #sortable li span { position: absolute; margin-left: -1.3em; }
 	</style>
+	<!-- END CSS -->
+
+	<!-- Link JS/jQuery -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="../js/sortable.js">
-</script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js">
-	</script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
-	</script>
-	<script src="../js/sortable.js">
-	</script>
-
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-	</script>
+	<script src="../js/sortable.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="../js/sortable.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
@@ -155,37 +161,27 @@
 <body id="test">
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-header">
-			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#" id="logo">
-				<span id="inli">inLine</span>
-				<span id="logoD">D</span></a>
+			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="#" id="logo"><span id="inli">inLine</span> <span id="logoD">D</span></a>
 		</div>
 	</nav>
-
 	<div class="container" id="dataContainer">
 		<section>
 			<div class="row">
-				
-				  <div class="col-sm-3">
-					<ul id="sortable" class="sort-list-ul">
+				<div class="col-sm-3">
+					<ul class="sort-list-ul" id="sortable">
 						<!--<img src"../img/#" alt="graph background"/> -->
 					</ul>
-					</div>
-					<div class="col-sm-6">
-					<ul id="graph" class=" sort-list-ul-no-drag"></ul>
-					</div>
-				
+				</div>
+				<div class="col-sm-6">
+					<ul class=" sort-list-ul-no-drag" id="graph"></ul>
+				</div>
 				<!-- END Column-->
 
 				<!-- Graph Options -->
 				<div class="col-sm-3">
-					<input id="name" placeholder="Enter a tab value" type="text" value="">
-					<input id="data" placeholder="Enter number of times data occurs" type="number" value="">
+					<input id="name" placeholder="Enter a tab value" type="text" value=""> <input id="data" placeholder="Enter number of times data occurs" type="number" value="">
 					<label>Add color to new tab information</label>
+
 					<select id="colour" name="colour">
 						<option value="lightblue">
 							Light Blue
@@ -212,6 +208,7 @@
 							Brown
 						</option>
 					</select>
+
 					<label>Are there any current lines this connects with?</label>
 					<select id="intersect" name="intersect">
 						<option id="None" value="None">None</option>
@@ -246,29 +243,32 @@
 		<div class="tab-content">
 			<div class="tab-pane fade in active" id="instructions">
 				<h3>Instructions</h3>
-				<p>
-					<ul>
+				<p></p>
+				<ul>
 					<li>enter the sets that intersect on each line, separated by spaces.</li>
 					<li>the diagram will not change until the "Redraw Diagram" button is pressed.</li>
-					</ul>
-				</p>
+				</ul>
+				<p></p>
 				<p>A paper detailing the process of designing this tool is given here:<br>
 				<b>Visualizing Sets with Linear Diagrams. Peter Rodgers, Gem Stapleton and Peter Chapman. ACM Transactions on Computer Human Interaction 22(6) pp. 27:1-27:39 September 2015. doi:10.1145/2810012.</b><br>
 				<a href="https://kar.kent.ac.uk/50020/">Online copy</a>.</p>
 				<p>If you use the tool in your research, we encourage you to reference this publication.</p>
 			</div>
+
 			<div class="tab-pane fade" id="svg">
 				<h3>SVG Download</h3>
 				<p>The SVG Download sections</p>
 				<p>Click on the button below to download the current graph as an SVG image file.</p>
 				<p><button class="btn btn-info" type="button">Download</button></p>
 			</div>
+
 			<div class="tab-pane fade" id="licence">
 				<h3>Licence</h3>
 				<p>The Linear Diagram Generator is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
-				<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. <br>
+				<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>
 				See the GNU General Public License v3 or later as published by the Free Software Foundation. A local copy of the licence.</p>
 			</div>
+
 			<div class="tab-pane fade" id="team">
 				<h3>Team</h3>
 				<p>Originally Developed by:<br>
@@ -285,11 +285,13 @@
 	<div class="footer">
 		<h4>About</h4>
 		<p>inLineD is a web application that allows the creation diagrams.</p>
-		<p>This is a diagram that shows the intersections of a number of sets. It can be used as an alternative to a Venn or Euler diagram. <br>There is evidence that linear diagrams are more easily interpreted than the other kinds of diagram <sup>1, 2.</sup></p>
+		<p>This is a diagram that shows the intersections of a number of sets. It can be used as an alternative to a Venn or Euler diagram.<br>
+		There is evidence that linear diagrams are more easily interpreted than the other kinds of diagram <sup>1, 2.</sup></p>
 		<p>1. Visualizing Sets: An Empirical Comparison of Diagram Types. Peter Chapman, Gem Stapleton, Peter Rodgers, Luana Micallef, and Andrew Blake. In Diagrams, LNCS (LNAI) 8578, pages 146-160. Springer, July 2014.<br>
 		2. A Comparative Study on Linear and Region Based Diagrams. B. Gottfried. Journal of Spatial Information Science, 10:3-20, 2015.</p>
 	</div>
 	<!-- END Footer -->
+
 </body>
 <!-- END Body -->
 </html>
