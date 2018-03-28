@@ -63,12 +63,15 @@
 	           //Button variable set up
 	           var removeButton = document.createElement('button');
 	           var glyphicon = document.createElement("span");
+			   removeButton.setAttribute("id","button"+x);
+			   removeButton.setAttribute("onClick","removeLine(this.id)");
+			  // removeButton.setAttribute("style","float:right;");
 	           glyphicon.setAttribute("class","glyphicon glyphicon-remove-sign");
 	           //button added is added NOT CORRENT
 	           removeButton.appendChild(glyphicon);
 	          // removeButton.setAttribute('onClick','removeLine(""class", "d_and_d-style y-axis" + x")');
 	           // //Following line adds remove button
-	           h4.appendChild(removeButton);
+	           li.appendChild(removeButton);
 	         li.setAttribute("class", "y-axis" + x); // adds the styling class to it
 	         graph_li.setAttribute("class", "graph_li y-axis" + x); // adds the styling class to it
 	         graph_li.setAttribute("id", li_x); // adds the styling class to it
@@ -130,9 +133,11 @@
 
 	       //Remove function that is supposed to remove a list item
 	       //NOT WORKING YET
-	       function removeLine(itemid){
-	      var item = document.getElementByClassName(itemid);
-	      list.removeChild(item);
+	       function removeLine(clicked_id){
+	     var remove_get = document.getElementById(clicked_id).parentNode.id;
+		 var remove_class = document.getElementById(remove_get).getAttribute("class");
+		 //var one_use = ??
+         one_use.remove(document.getElementsByClassName(remove_class));
 	          }
 	</script>
 	<!-- END JS -->
