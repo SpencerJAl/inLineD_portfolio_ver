@@ -26,6 +26,9 @@
 	padding: 0;
 	
 }
+#sortable li{
+		background-color: #a9a9a9 !important;
+}
 #graph{
 	list-style-type:none;
 	margin-right: 0;
@@ -61,11 +64,6 @@ border-color:blue;
 .hr_length{
 	width:15px;
 }
-.d_and_d-style{
-	background-color: #a9a9a9 !important;
-	
-}
-
 .graph_li{
 	background-color:#ffffff;
 	
