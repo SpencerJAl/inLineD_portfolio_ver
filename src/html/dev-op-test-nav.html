@@ -36,7 +36,6 @@
 	         var h4 = document.createElement("h4"); // creates h4 tag for list names
 	         var hr = document.createElement("hr");// creats hr to display information in the graph
 	         var style = document.getElementById("colour").value // gets the users colour choice
-	         var repeat_info = document.getElementById("data").value // gets the value data for loop
 	         var option_add = document.getElementById("name").value // gets the intersect value
 	         var hr_x = "hr_"+x;
 	         var li_x = "li_"+x;
@@ -55,7 +54,8 @@
 
 	         // appends information as needed
 	         li.appendChild(h4); // adds the h4 within the new item
-	         graph_li.setAttribute("style","margin-left:0; !important");
+			 li.setAttribute("style","border:1px black solid;")
+	         graph_li.setAttribute("style","margin-left:0; border:1px black solid; !important");
 	         h4.appendChild(document.createTextNode(name)); // adds the text within the new item
 	         hr.setAttribute("id","hr_"+name); // adds the custom colour to the hr tag
 	         hr.setAttribute("class", "hr_length" + " " +style +" "+name); // sets the hr
@@ -136,14 +136,6 @@
 	</script>
 	<!-- END JS -->
 
-	<!-- CSS, maybe put in external file? -->
-	<style>
-	       #sortable { list-style-type: none; margin: 0; padding: 0; width: 25%; }
-	       #sortable li {font-size: 1.4em;  }
-	       #sortable li span { position: absolute; margin-left: -1.3em; }
-	</style>
-	<!-- END CSS -->
-
 	<!-- Link JS/jQuery -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -179,7 +171,7 @@
 
 				<!-- Graph Options -->
 				<div class="col-sm-3">
-					<input id="name" placeholder="Enter a tab value" type="text" value=""> <input id="data" placeholder="Enter number of times data occurs" type="number" value="">
+					<input id="name" placeholder="Enter a tab value" type="text" value="">
 					<label>Add color to new tab information</label>
 
 					<select id="colour" name="colour">

@@ -24,19 +24,7 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	width: 25%;
-}
-
-#sortable li {
 	
-	
-	font-size: 1.4em;
-	height: 18px;
-}
-
-#sortable li span {
-	position: absolute;
-	margin-left: -1.3em;
 }
 #graph{
 	list-style-type:none;
