@@ -16,7 +16,7 @@
 	<!-- JS -->
 	<script>
 	         // Variable set up
-	         var x=0;
+	         var x=1;
 	         var repeat=0;
 	         // Creates intion options for what gets added to the second option list
 	         var option_list = [];
@@ -132,11 +132,22 @@
 	          //Remove function that is supposed to remove a list item
 	          //NOT WORKING YET
 	          function removeLine(clicked_id){
-	        var remove_get = document.getElementById(clicked_id).parentNode.id;
-	        var remove_class = document.getElementById(remove_get).getAttribute("class");
-	        //var one_use = ??
-	        one_use.remove(document.getElementsByClassName(remove_class));
+	        var remove_get = document.getElementById(clicked_id).parentNode;
+			var remove_id = remove_get.id;
+	        var remove_class = document.getElementById(remove_id).getAttribute("class");
+			var remove_element = document.getElementsByClassName(remove_class);
+			var remove_length = remove_element.length;
+			
+			for (i = 0; i < remove_element.length; i++){
+			remove_element[i].parentNode.removeChild(remove_element[i]);
 	             }
+		    for (i = 0; i < remove_element.length; i++){
+			remove_element[i].parentNode.removeChild(remove_element[i]);
+	             }
+
+			
+				 }
+
 	</script>
 	<!-- END JS -->
 
